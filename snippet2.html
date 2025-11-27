@@ -10,11 +10,23 @@
 
 <!-- Carousel Styles -->
 <style>
+    /* Prevent horizontal overflow on mobile */
+    @media (max-width: 767px) {
+        body, html {
+            overflow-x: hidden;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+    }
 
     /* HOME PAGE - Mobile design */
     #carousel-frame-mobile {
         width: 100%;
-        max-width: 100%;
+        max-width: 100vw;
         min-height: 365.47px;
         margin: 0;
         position: relative;
@@ -22,37 +34,35 @@
         background-color: transparent;
         font-family: 'Stack Sans Text', sans-serif;
         box-sizing: border-box;
-    }
-    
-    .mobile-main {
+        overflow-x: hidden; /* Prevent horizontal overflow */
         display: flex;
         flex-direction: column;
-        width: 100%;
-        margin: 0;
-        padding: 0;
         gap: 20px;
     }
     
-    .mobile-text-group {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+    /* Mobile text elements - direct children of carousel-frame-mobile */
+    #carousel-frame-mobile > .mobile-subtitle {
         margin: 0;
         padding: 0;
-        gap: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
-    .mobile-text-group > div {
+    #carousel-frame-mobile > .mobile-title {
         margin: 0;
         padding: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
-    .mobile-carousel-wrapper {
-        width: 100%;
+    #carousel-frame-mobile > .product-card {
         margin: 0;
         padding: 0;
-        display: flex;
-        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .mobile-subtitle {
@@ -97,10 +107,20 @@
     #carousel-wrapper {
         background-color: transparent;
         width: 100%;
+        max-width: 100vw;
         display: block;
         padding: 0;
         margin: 30px 0;
         position: relative;
+        box-sizing: border-box;
+        overflow-x: hidden; /* Prevent horizontal overflow on mobile */
+    }
+    
+    @media (max-width: 767px) {
+        #carousel-wrapper {
+            margin: 30px 0;
+            padding: 0;
+        }
     }
     
     @media (min-width: 768px) {
@@ -108,69 +128,54 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            margin: 30px 0;
+            margin: 30px auto;
+            max-width: 1440px;
         }
     }
     
-    /* Carousel root container */
-    .carousel-root {
+    /* Product card - Static */
+    .product-card {
         position: relative;
         width: 100%;
         max-width: 100%;
         height: auto;
-        margin: 0;
+        overflow: hidden; /* Prevent overflow */
+        border-radius: 0;
+        border-top-right-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
+        box-sizing: border-box;
+        border: 3px solid #8BBAD8; /* Mobile: 8px border */
+        border-radius: 0 20px 0 20px !important;
+        aspect-ratio: 336 / 365.47; /* Mobile aspect ratio */
     }
     
-    /* Group 294 */
     @media (min-width: 768px) {
-        .carousel-root {
-            position: relative;
-            width: 822.43px;
-            height: 529.29px;
-            margin: 0;
-            padding: 0;
-            flex-shrink: 0;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
+        .product-card {
+            border-top-right-radius: 33.35px;
+            border-bottom-left-radius: 33.35px;
+            overflow: visible; /* Desktop: allow overflow for border visibility */
         }
     }
     
-    /* Responsive carousel for smaller desktop screens */
+    @media (min-width: 768px) {
+        .product-card {
+            width: 822.43px;
+            height: 529.29px;
+            border-radius: 0 33.35px 0 33.35px;
+        }
+    }
+    
     @media (min-width: 768px) and (max-width: 1200px) {
-        .carousel-root {
+        .product-card {
             width: 60vw;
-            height: calc(60vw * 0.644); /* Maintain aspect ratio (529.29/822.43) */
+            height: calc(60vw * 0.644);
             max-width: 822.43px;
             max-height: 529.29px;
         }
-        
-        .carousel-container {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .carousel-track {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .product-card {
-            min-width: 100%;
-            width: 100%;
-            height: 100%;
-            min-height: 100%;
-        }
-        
-        .product-image {
-            min-height: 100%;
-        }
     }
     
-    /* Responsive carousel for medium screens */
     @media (min-width: 992px) and (max-width: 1400px) {
-        .carousel-root {
+        .product-card {
             width: 55vw;
             height: calc(55vw * 0.644);
             max-width: 822.43px;
@@ -178,103 +183,11 @@
         }
     }
     
-    /* Responsive carousel for large screens */
     @media (min-width: 1401px) {
-        .carousel-root {
+        .product-card {
             width: 822.43px;
             height: 529.29px;
         }
-    }
-    
-    /* Carousel container */
-    .carousel-container {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin: 0;
-        overflow: hidden; /* This is crucial for the slide effect */
-        aspect-ratio: 336 / 365.47;
-        cursor: grab;
-        user-select: none;
-        -webkit-user-select: none;
-    }
-    
-    .carousel-container:active {
-        cursor: grabbing;
-    }
-    
-    @media (min-width: 768px) {
-        .carousel-container {
-            width: 822.43px;
-            height: 529.29px;
-            margin: 0;
-            padding: 0;
-        }
-    }
-    
-    @media (min-width: 768px) and (max-width: 1200px) {
-        .carousel-container {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    @media (min-width: 992px) and (max-width: 1400px) {
-        .carousel-container {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    /* Carousel track */
-    .carousel-track {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        touch-action: pan-y; /* Allow vertical scroll, block horizontal */
-        user-select: none;
-        -webkit-user-select: none;
-    }
-    
-    @media (min-width: 768px) {
-        .carousel-track {
-            width: 822.43px;
-            height: 529.29px;
-            margin: 0;
-            padding: 0;
-        }
-    }
-    
-    @media (min-width: 768px) and (max-width: 1200px) {
-        .carousel-track {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    @media (min-width: 992px) and (max-width: 1400px) {
-        .carousel-track {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    /* Product card */
-    .product-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        border-radius: 0;
-        border-top-right-radius: 20px;
-        border-bottom-left-radius: 20px;
-        box-sizing: border-box;
-        opacity: 0;
-        z-index: 1;
-        transition: opacity 0.3s ease-out;
     }
     
     /* image 255 */
@@ -308,13 +221,38 @@
         }
     }
     
-    .product-card.active {
-        opacity: 1;
-        z-index: 2;
+    
+    /* Product image container */
+    .product-image-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        z-index: 1;
+        overflow: hidden; /* Prevent overflow */
+        background-image: url('https://cdn.shopify.com/s/files/1/0967/6039/8106/files/headphone_silhouette.png?v=1764245392');
+        background-size: 150%; /* Mobile: scale the background image to 150% */
+        background-position: center;
+        background-repeat: no-repeat;
+         /* top-right and bottom-left - 2px radius */
+        box-sizing: border-box;
     }
     
-    .product-card.transitioning {
-        z-index: 3;
+   
+    
+    
+    
+    @media (min-width: 768px) {
+        .product-image-container {
+             /* top-right and bottom-left */
+            transform: scale(1); /* Desktop: scale the image */
+            transform-origin: center center;
+            background-size: cover;
+            background-position: center 40%; /* Position image downward */
+            overflow: visible;
+        }
     }
     
     /* Product image placeholder */
@@ -332,6 +270,9 @@
         left: 0;
         z-index: 1;
         transition: opacity 0.3s ease-out;
+        border: 8px solid #8BBAD8; /* Mobile: 8px border */
+        border-radius: 0 20px 0 20px; /* top-right and bottom-left */
+        box-sizing: border-box;
     }
     
     @media (min-width: 768px) {
@@ -339,6 +280,7 @@
             min-height: 529.29px;
             margin: 0;
             padding: 0;
+            border: 2px solid #8BBAD8; /* Desktop: 2px border */
         }
     }
     
@@ -354,44 +296,7 @@
         }
     }
     
-    /* Product images inside cards - responsive */
-    .product-card img {
-        transition: transform 0.3s ease, opacity 0.3s ease-out;
-        position: absolute;
-        z-index: 2;
-    }
-    
-    /* Ensure images fade in sync with parent card */
-    .product-card:not(.active) img,
-    .product-card.transitioning img {
-        opacity: 0;
-    }
-    
-    .product-card.active img {
-        opacity: 1;
-    }
-    
-    /* Mobile product images - visible on mobile, hidden on desktop */
-    .mobile-product-img {
-        display: block;
-    }
-    
-    @media (min-width: 768px) {
-        .mobile-product-img {
-            display: none !important;
-        }
-    }
-    
-    /* Desktop product images - hidden on mobile, visible on desktop */
-    .desktop-product-img {
-        display: none !important;
-    }
-    
-    @media (min-width: 768px) {
-        .desktop-product-img {
-            display: block !important;
-        }
-    }
+    /* Image-related styles removed - using background-image on container instead */
     
     /* Hide other product images on desktop that don't have specific classes */
     @media (min-width: 768px) {
@@ -420,31 +325,7 @@
         }
     }
     
-    /* Sold out badge */
-    .sold-out-badge {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        width: 61.89px;
-        height: 21.22px;
-        background-color: #FC832C;
-        color: #ffffff;
-        border-radius: 20px;
-        font-family: 'Stack Sans Text', sans-serif;
-        font-size: 9.73px;
-        font-weight: 400;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-    }
-    
-    @media (min-width: 768px) {
-        .sold-out-badge {
-            display: none;
-        }
-    }
+    /* Sold out badge - Removed */
     
     /* Bottom info section */
     .product-info {
@@ -464,15 +345,22 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 4px;
+            left: 16px;
             right: 16px;
+            max-width: calc(100% - 32px);
+            box-sizing: border-box;
         }
         
         .product-info h3 {
             margin: 0;
+            max-width: 100%;
+            word-wrap: break-word;
         }
         
         .product-info p {
             margin-top: 2px;
+            max-width: 100%;
+            word-wrap: break-word;
         }
     }
     
@@ -511,6 +399,7 @@
         bottom: 25px !important;
         right: 16px !important;
         width: 114.4px;
+        max-width: calc(100% - 32px); /* Ensure button doesn't overflow */
         height: 40px;
         background-color: #000000;
         color: #ffffff;
@@ -559,44 +448,6 @@
     }
     
     /* Pagination dots */
-    .carousel-dots {
-        position: absolute;
-        bottom: clamp(15px, 2.5vw, 27px);
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(336px, 100%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: clamp(4px, 1.5vw, 6px);
-        z-index: 15;
-        pointer-events: none;
-    }
-    
-    @media (min-width: 768px) {
-        .carousel-dots {
-            bottom: clamp(27px, 2vw, 39px);
-            gap: 10px;
-            align-items: center;
-        }
-    }
-    
-    .carousel-dots .dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: #cccccc;
-        cursor: pointer;
-        transition: background-color 0.3s, width 0.3s, height 0.3s;
-        pointer-events: all;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .carousel-dots .dot.active {
-        background-color: #000000;
-    }
     
     /* Desktop Content Area (Right Side) */
     .desktop-content {
@@ -618,11 +469,7 @@
         
         /* [ what we've built ] */
         .desktop-subtitle {
-            position: relative;
             width: 63.58px;
-            height: 60.03px;
-            left: 0;
-            top: 0;
             font-family: 'Stack Sans Text';
             font-style: normal;
             font-weight: 300;
@@ -630,17 +477,13 @@
             line-height: 20.01px;
             color: #010101;
             margin: 0;
-            padding-top: 30px;
+            padding: 30px 0 0 0;
             text-align: left;
         }
         
         /* the current arsenal */
         .desktop-title {
-            position: relative;
             width: 212.76px;
-            height: 63.19px;
-            left: 0;
-            top: 0;
             font-family: 'Stack Sans Notch';
             font-style: normal;
             font-weight: 500;
@@ -648,7 +491,7 @@
             line-height: 33.35px;
             color: #010101;
             margin: 0;
-            padding-top: 30px;
+            padding: 30px 0 0 0;
             text-align: left;
         }
         
@@ -693,10 +536,10 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 0px;
             gap: 6.67px;
             width: 166.42px;
-            height: 43.45px;
+            margin: 0;
+            padding: 0;
             flex: none;
             order: 0;
             flex-grow: 0;
@@ -706,17 +549,12 @@
         .desktop-slide-content h3,
         .desktop-heading-info h3 {
             width: 166.42px;
-            height: 20.00px;
             font-family: 'Stack Sans Notch';
             font-style: normal;
             font-weight: 500;
             font-size: 26.68px;
             line-height: 20.00px;
             color: #000000;
-            flex: none;
-            order: 0;
-            align-self: stretch;
-            flex-grow: 0;
             margin: 0;
             padding: 0;
             text-align: left;
@@ -725,17 +563,12 @@
         /* 2000+ gamers love it */
         .desktop-gamers-count {
             width: 166.42px;
-            height: 16.80px;
             font-family: 'Stack Sans Text';
             font-style: normal;
             font-weight: 400;
             font-size: 11.99px;
             line-height: 15.84px;
             color: #585858;
-            flex: none;
-            order: 1;
-            align-self: stretch;
-            flex-grow: 0;
             margin: 0;
             padding: 0;
         }
@@ -743,17 +576,12 @@
         /* Description paragraph */
         .desktop-description {
             width: 370.39px;
-            height: 87.01px;
             font-family: 'Stack Sans Text';
             font-style: normal;
             font-weight: 300;
             font-size: 15.01px;
             line-height: 20.01px;
             color: #000000;
-            flex: none;
-            order: 1;
-            align-self: stretch;
-            flex-grow: 0;
             margin: 0;
             padding: 0;
             text-align: left;
@@ -765,23 +593,17 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            padding: 12.00px 48.01px;
-            gap: 10.00px;
-            width: 214.02px;
-            height: 46.00px;
+            padding: 12px 48px;
+            width: 214px;
+            height: 46px;
             background: #000000;
-            border-radius: 23.35px;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
             border: none;
-            cursor: pointer;
+            border-radius: 23.35px;
+            margin: 20px 0 0 0;
             box-sizing: border-box;
+            cursor: pointer;
             pointer-events: auto;
             touch-action: manipulation;
-            margin: 0;
-            margin-top: 20px;
-            /* Notify me - Button text properties */
             font-family: 'Stack Sans Text';
             font-style: normal;
             font-weight: 500;
@@ -864,7 +686,7 @@
     }
     
     @media (min-width: 768px) {
-        /* First Div - 60% width */
+        /* First Div - 60% width - Carousel Section */
         .desktop-div-1 {
             width: 60%;
             flex: 0 0 60%;
@@ -872,67 +694,88 @@
             justify-content: flex-start;
             align-items: center;
             position: relative;
+            margin: 0;
+            padding: 0;
         }
         
-        /* Second Div - 40% width */
+        /* Second Div - 40% width - Content Section */
         .desktop-div-2 {
             width: 40%;
             flex: 0 0 40%;
             display: flex;
             flex-direction: column;
+            padding-left: 80px;
+            box-sizing: border-box;
         }
         
-        /* Child divs inside second div - 50:50 ratio */
+        /* Header Section - 50% height */
         .desktop-div-2-child-1 {
             height: 50%;
             flex: 0 0 50%;
             display: flex;
             flex-direction: row;
+            margin: 0;
+            padding: 0;
         }
         
+        /* Content Section - 50% height */
         .desktop-div-2-child-2 {
             height: 50%;
             flex: 0 0 50%;
             display: flex;
             flex-direction: column;
+            margin: 0;
+            padding: 0;
         }
         
-        /* Child divs inside second child - equal ratios (33.33% each) */
+        /* Subtitle Section - 30% width */
+        .desktop-div-2-child-1-inner-1 {
+            width: 30%;
+            flex: 0 0 30%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        /* Title Section - 70% width */
+        .desktop-div-2-child-1-inner-2 {
+            width: 70%;
+            flex: 0 0 70%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        /* Heading Info Section - 33.33% height */
         .desktop-div-2-child-2-inner-1 {
             height: 33.33%;
             flex: 0 0 33.33%;
             display: flex;
             align-items: flex-start;
-            padding-left: 80px;
+            margin: 0;
+            padding: 0;
         }
         
+        /* Description Section - 33.33% height */
         .desktop-div-2-child-2-inner-2 {
             height: 33.33%;
             flex: 0 0 33.33%;
             display: flex;
             align-items: flex-start;
-            padding-left: 80px;
+            margin: 0;
+            padding: 0;
         }
         
+        /* Button Section - 33.33% height */
         .desktop-div-2-child-2-inner-3 {
             height: 33.33%;
             flex: 0 0 33.33%;
             display: flex;
             align-items: flex-start;
-            padding-left: 80px;
-        }
-        
-        /* Grandchild divs inside first child - 30:70 ratio */
-        .desktop-div-2-child-1-inner-1 {
-            width: 30%;
-            flex: 0 0 30%;
-            padding-left: 80px;
-        }
-        
-        .desktop-div-2-child-1-inner-2 {
-            width: 70%;
-            flex: 0 0 70%;
-            padding-left: 80px;
+            margin: 0;
+            padding: 0;
         }
     }
     
@@ -1226,96 +1069,21 @@
     <!-- MOBILE VERSION - Visible on mobile only -->
     <!-- ============================================ -->
     <div class="carousel-mobile-section">
-        <!-- Main Container -->
         <div id="carousel-frame-mobile">
-            <div class="mobile-main">
-                <div class="mobile-text-group">
-                    <div class="mobile-text-1">
-                        <p class="mobile-subtitle">[ what we've built ]</p>
-                    </div>
-                    <div class="mobile-text-2">
-                        <h2 class="mobile-title">the <span style="text-decoration: underline;">current arsenal</span></h2>
-                    </div>
+            <p class="mobile-subtitle">[ what we've built ]</p>
+            <h2 class="mobile-title">the <span style="text-decoration: underline;">current arsenal</span></h2>
+            
+            <!-- Product Card - Static -->
+            <div class="product-card">
+                <!-- Product Image Container -->
+                <div class="product-image-container"></div>
+                
+                <!-- Product Overlay Elements -->
+                <div class="product-info">
+                    <h3>version. <span class="highlight">H1</span></h3>
+                    <p>2000+ gamers love it</p>
                 </div>
-                <div class="mobile-carousel-wrapper">
-                    <!-- Carousel Root Container -->
-                    <div class="carousel-root">
-                    
-                    <!-- Carousel Container -->
-                    <div class="carousel-container">
-                        <!-- Carousel Track with Infinite Loop -->
-                        <div class="carousel-track" id="carouselTrack">
-                            
-                            <!-- Clone of Last Slide (for infinite loop) -->
-                            <div class="product-card">
-                                <!-- Product Image Container -->
-                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
-                                
-                                <!-- Product Overlay Elements -->
-                                <div class="sold-out-badge">Sold out</div>
-                                <div class="product-info">
-                                    <h3><span style="color: #FF8231;">scoop</span></h3>
-                                    <p>1000+ gamers love it</p>
-                                </div>
-                                <button class="notify-btn">Notify me</button>
-                            </div>
-                        
-                            <!-- Slide 1 -->
-                            <div class="product-card">
-                                <!-- Product Image Container -->
-                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
-                                <img class="mobile-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                                <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                                
-                                <!-- Product Overlay Elements -->
-                                <div class="sold-out-badge">Sold out</div>
-                                <div class="product-info">
-                                    <h3>version. <span class="highlight">H1</span></h3>
-                                    <p>2000+ gamers love it</p>
-                                </div>
-                                <button class="notify-btn">Notify me</button>
-                            </div>
-                        
-                            <!-- Slide 2 -->
-                            <div class="product-card">
-                                <!-- Product Image Container -->
-                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
-                                <img class="mobile-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/powerbank2.png" alt="Powerbank H2" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                                <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/powerbank2.png" alt="Powerbank H2" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                                
-                                <!-- Product Overlay Elements -->
-                                <div class="sold-out-badge">Sold out</div>
-                                <div class="product-info">
-                                    <h3><span style="color: #FF8231;">scoop</span></h3>
-                                    <p>2000+ gamers say scoop tagline copy</p>
-                                </div>
-                                <button class="notify-btn">Buy now</button>
-                            </div>
-                        
-                            <!-- Clone of First Slide (for infinite loop) -->
-                            <div class="product-card">
-                                <!-- Product Image Container -->
-                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
-                                <img class="mobile-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                                <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                                
-                                <!-- Product Overlay Elements -->
-                                <div class="sold-out-badge">Sold out</div>
-                                <div class="product-info">
-                                    <h3>version. <span class="highlight">H1</span></h3>
-                                    <p>2000+ gamers love it</p>
-                                </div>
-                                <button class="notify-btn">Notify me</button>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- Pagination Dots -->
-                    <div class="carousel-dots" id="carouselDotsMobile"></div>
-                    
-                    </div>
-                </div>
+                <button class="notify-btn">Notify me</button>
             </div>
         </div>
     </div>
@@ -1324,70 +1092,33 @@
     <!-- DESKTOP VERSION - Visible on desktop only -->
     <!-- ============================================ -->
     <div class="carousel-desktop-section">
-        <!-- First Div -->
+        <!-- First Div - Image Section -->
         <div class="desktop-div-1">
-            <!-- Carousel Root Container -->
-            <div class="carousel-root">
-                
-                <!-- Carousel Container -->
-                <div class="carousel-container">
-                    <!-- Carousel Track with Infinite Loop -->
-                    <div class="carousel-track" id="carouselTrackDesktop">
-                        
-                        <!-- Clone of Last Slide (for infinite loop) -->
-                        <div class="product-card">
-                            <!-- Product Image Container -->
-                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
-                        </div>
-                    
-                        <!-- Slide 1 -->
-                        <div class="product-card">
-                            <!-- Product Image Container -->
-                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
-                            <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/headphone1.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                        </div>
-                    
-                        <!-- Slide 2 -->
-                        <div class="product-card">
-                            <!-- Product Image Container -->
-                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
-                            <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/powerbank.png" alt="Powerbank H2" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                        </div>
-                    
-                        <!-- Clone of First Slide (for infinite loop) -->
-                        <div class="product-card">
-                            <!-- Product Image Container -->
-                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
-                            <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/headphone1.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
-                        </div>
-                        
-                    </div>
-                </div>
-                
-                <!-- Pagination Dots -->
-                <div class="carousel-dots" id="carouselDotsDesktop"></div>
-                
+            <!-- Product Card - Static -->
+            <div class="product-card">
+                <!-- Product Image Container -->
+                <div class="product-image-container"></div>
             </div>
         </div>
         
-        <!-- Second Div -->
+        <!-- Second Div - Content Section -->
         <div class="desktop-div-2">
-            <!-- First Child Div - 50% -->
+            <!-- Header Section - 50% height -->
             <div class="desktop-div-2-child-1">
-                <!-- Inner Div 1 - 30% -->
+                <!-- Subtitle Section - 30% width -->
                 <div class="desktop-div-2-child-1-inner-1">
                     <p class="desktop-subtitle">[ what<br>we've<br>built ]</p>
                 </div>
                 
-                <!-- Inner Div 2 - 70% -->
+                <!-- Title Section - 70% width -->
                 <div class="desktop-div-2-child-1-inner-2">
                     <h2 class="desktop-title">the <span style="text-decoration: underline;">current<br>arsenal</span></h2>
                 </div>
             </div>
             
-            <!-- Second Child Div - 50% -->
+            <!-- Content Section - 50% height -->
             <div class="desktop-div-2-child-2">
-                <!-- Inner Div 1 - 33.33% -->
+                <!-- Heading Info Section - 33.33% height -->
                 <div class="desktop-div-2-child-2-inner-1">
                     <div class="desktop-heading-info" id="desktop-heading-info">
                         <h3>version. <span style="color: #FF6A00;">H1</span></h3>
@@ -1395,12 +1126,12 @@
                     </div>
                 </div>
                 
-                <!-- Inner Div 2 - 33.33% -->
+                <!-- Description Section - 33.33% height -->
                 <div class="desktop-div-2-child-2-inner-2">
                     <p class="desktop-description" id="desktop-description">Engineered over 2 years to bring immersive sound<br>and jaw dropping design together, meet the<br>World's Coolest Gaming Headphones</p>
                 </div>
                 
-                <!-- Inner Div 3 - 33.33% -->
+                <!-- Button Section - 33.33% height -->
                 <div class="desktop-div-2-child-2-inner-3">
                     <button class="desktop-notify-btn">Notify me</button>
                 </div>
@@ -1434,7 +1165,7 @@
     </div>
 </div>
 
-<!-- Carousel JavaScript Logic -->
+<!-- Section Visibility Logic -->
 <script>
 (() => {
     const mobileSection = document.querySelector('.carousel-mobile-section');
@@ -1454,297 +1185,6 @@
 
     desktopBreakpoint.addEventListener('change', updateCarouselVisibility);
     updateCarouselVisibility();
-
-    // Initialize Mobile Carousel
-    const initMobileCarousel = () => {
-        const track = document.getElementById('carouselTrack');
-        const dotsContainer = document.getElementById('carouselDotsMobile');
-        
-        if (!track || !dotsContainer) {
-            return; // Mobile carousel not found (desktop view)
-        }
-        
-        initCarousel(track, dotsContainer, null);
-    };
-    
-    // Update desktop content based on slide index
-    const updateDesktopContent = (slideIndex) => {
-        const headingInfo = document.getElementById('desktop-heading-info');
-        const description = document.getElementById('desktop-description');
-        
-        if (!headingInfo || !description) {
-            return; // Desktop content elements not found (mobile view)
-        }
-        
-        // Slide 0: version. H1
-        if (slideIndex === 0) {
-            headingInfo.innerHTML = '<h3>version. <span style="color: #FF6A00;">H1</span></h3><p class="desktop-gamers-count">2000+ gamers love it</p>';
-            description.innerHTML = 'Engineered over 2 years to bring immersive sound<br>and jaw dropping design together, meet the<br>World\'s Coolest Gaming Headphones';
-            // Update desktop button text
-            const desktopButton = document.querySelector('.desktop-notify-btn');
-            if (desktopButton) {
-                desktopButton.textContent = 'Notify me';
-            }
-        }
-        // Slide 1: scoop
-        else if (slideIndex === 1) {
-            headingInfo.innerHTML = '<h3><span style="color: #FF6A00;">scoop</span></h3><p class="desktop-gamers-count">2000+ gamers say scoop tagline copy</p>';
-            description.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Sed do eiusmod tempor incididunt ut labore et dolore';
-            // Update desktop button text
-            const desktopButton = document.querySelector('.desktop-notify-btn');
-            if (desktopButton) {
-                desktopButton.textContent = 'Buy now';
-            }
-        }
-    };
-    
-    // Initialize Desktop Carousel
-    const initDesktopCarousel = () => {
-        const track = document.getElementById('carouselTrackDesktop');
-        const dotsContainer = document.getElementById('carouselDotsDesktop');
-        const desktopSlides = document.querySelectorAll('.desktop-slide-content');
-        
-        if (!track || !dotsContainer) {
-            return; // Desktop carousel not found (mobile view)
-        }
-        
-        initCarousel(track, dotsContainer, desktopSlides);
-        
-        // Initialize desktop content for first slide
-        requestAnimationFrame(() => {
-            updateDesktopContent(0);
-        });
-    };
-    
-    // Shared carousel initialization function
-    const initCarousel = (track, dotsContainer, desktopSlides) => {
-        const cards = track.querySelectorAll('.product-card');
-        const totalSlides = 2; // actual number of slides (excluding clones)
-        let currentSlide = 0; // start at first slide (0-indexed)
-        let isTransitioning = false;
-        let autoSlideInterval = null;
-        
-        // Get the container element (carousel-container) for swipe handling
-        const container = track.closest('.carousel-container');
-        
-        // Generate dots
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('span');
-            dot.className = `dot ${i === 0 ? 'active' : ''}`;
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-        
-        const dots = dotsContainer.querySelectorAll('.dot');
-        
-        // Initialize - show only the first real slide (index 1, since index 0 is clone)
-        cards.forEach((card, index) => {
-            // Index 1 is the first real slide (Slide 1)
-            if (index === 1) {
-                card.classList.add('active');
-                card.style.opacity = '1';
-                card.style.zIndex = '2';
-            } else {
-                card.classList.remove('active');
-                card.style.opacity = '0';
-                card.style.zIndex = '1';
-            }
-        });
-        
-        const goToSlide = (slideIndex, resetAutoSlide = true) => {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            
-            // Reset autoslide timer
-            if (resetAutoSlide) {
-                clearInterval(autoSlideInterval);
-                startAutoSlide();
-            }
-            
-            const prevSlide = currentSlide;
-            currentSlide = slideIndex;
-            
-            // Update desktop content BEFORE starting transition so text is ready
-            // Check if we're on desktop by checking if desktop content elements exist
-            const headingInfo = document.getElementById('desktop-heading-info');
-            if (headingInfo) {
-                updateDesktopContent(currentSlide);
-            }
-            
-            // Map logical slide index to actual card index (accounting for clone at start)
-            const prevCardIndex = prevSlide + 1; // +1 because index 0 is clone
-            const nextCardIndex = currentSlide + 1; // +1 because index 0 is clone
-            
-            const prevCard = cards[prevCardIndex];
-            const nextCard = cards[nextCardIndex];
-            
-            // Animation sequence: instantly cut current slide, wait 0.1s, then fade in next
-            // Instantly hide previous slide (cut, no fade)
-            prevCard.classList.remove('active');
-            prevCard.style.opacity = '0';
-            prevCard.style.zIndex = '1';
-            
-            // Set next card to be on top but invisible
-            nextCard.classList.add('transitioning');
-            nextCard.style.zIndex = '3';
-            nextCard.style.opacity = '0';
-            
-            // Set images to opacity 0 initially to ensure they start hidden
-            const images = nextCard.querySelectorAll('img, .product-image');
-            images.forEach(img => {
-                img.style.opacity = '0';
-            });
-            
-            // Wait 0.1s after cutting, then fade in over 0.3s
-            setTimeout(() => {
-                // Fade in next slide with 0.3s duration (ease-out for fade-in only)
-                nextCard.style.transition = 'opacity 0.3s ease-out';
-                nextCard.style.opacity = '1';
-                
-                // Fade in images simultaneously with parent
-                images.forEach(img => {
-                    img.style.transition = 'opacity 0.3s ease-out';
-                    img.style.opacity = '1';
-                });
-                
-                // Wait for transition to complete
-                setTimeout(() => {
-                    nextCard.style.transition = '';
-                    images.forEach(img => {
-                        img.style.transition = '';
-                    });
-                    nextCard.classList.remove('transitioning');
-                    nextCard.classList.add('active');
-                    nextCard.style.zIndex = '2';
-                    isTransitioning = false;
-                }, 300); // Match CSS transition duration
-            }, 100); // 0.1s delay after cutting
-            
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-            
-            // Update desktop content slides if they exist
-            if (desktopSlides) {
-                desktopSlides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentSlide);
-                });
-            }
-        };
-        
-        // Auto-slide function
-        const startAutoSlide = () => {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(() => {
-                goToSlide((currentSlide + 1) % totalSlides, false);
-            }, 7000); // 7 seconds
-        };
-        
-        // Start autoslide
-        startAutoSlide();
-        
-        // Touch and mouse swipe handling on container (mobile and desktop)
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let touchStartY = 0;
-        let touchEndY = 0;
-        let mouseStartX = 0;
-        let mouseEndX = 0;
-        let mouseStartY = 0;
-        let mouseEndY = 0;
-        let isMouseDown = false;
-        
-        // Calculate swipe threshold as 10% of viewport width
-        const getSwipeThreshold = () => {
-            return window.innerWidth * 0.1;
-        };
-        
-        // Use container for swipe handling (whole image area)
-        const swipeElement = container || track;
-        
-        // Touch events on container
-        swipeElement.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].clientX;
-            touchStartY = e.changedTouches[0].clientY;
-        }, { passive: true });
-        
-        swipeElement.addEventListener('touchmove', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            touchEndY = e.changedTouches[0].clientY;
-        }, { passive: true });
-        
-        swipeElement.addEventListener('touchend', () => {
-            const diffX = touchStartX - touchEndX;
-            const diffY = touchStartY - touchEndY;
-            const threshold = getSwipeThreshold();
-            
-            // Only swipe if horizontal movement is greater than vertical and threshold met
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
-                if (diffX > 0) {
-                    // Swipe left - go to next slide (with wrapping)
-                    goToSlide((currentSlide + 1) % totalSlides);
-                } else {
-                    // Swipe right - go to previous slide (with wrapping)
-                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-                }
-            }
-        }, { passive: true });
-        
-        // Mouse events for desktop swipe on container
-        swipeElement.addEventListener('mousedown', (e) => {
-            isMouseDown = true;
-            mouseStartX = e.clientX;
-            mouseStartY = e.clientY;
-            swipeElement.style.cursor = 'grabbing';
-        }, { passive: true });
-        
-        swipeElement.addEventListener('mousemove', (e) => {
-            if (!isMouseDown) return;
-            mouseEndX = e.clientX;
-            mouseEndY = e.clientY;
-        }, { passive: true });
-        
-        swipeElement.addEventListener('mouseup', () => {
-            if (!isMouseDown) return;
-            
-            const diffX = mouseStartX - mouseEndX;
-            const diffY = mouseStartY - mouseEndY;
-            const threshold = getSwipeThreshold();
-            
-            // Only swipe if horizontal movement is greater than vertical and threshold met
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
-                if (diffX > 0) {
-                    // Swipe left - go to next slide (with wrapping)
-                    goToSlide((currentSlide + 1) % totalSlides);
-                } else {
-                    // Swipe right - go to previous slide (with wrapping)
-                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-                }
-            }
-            
-            isMouseDown = false;
-            swipeElement.style.cursor = '';
-        }, { passive: true });
-        
-        swipeElement.addEventListener('mouseleave', () => {
-            isMouseDown = false;
-            swipeElement.style.cursor = '';
-        }, { passive: true });
-    };
-    
-    // Initialize both carousels
-    const initAllCarousels = () => {
-        initMobileCarousel();
-        initDesktopCarousel();
-    };
-    
-    // Initialize immediately or wait for DOM
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAllCarousels);
-    } else {
-        initAllCarousels();
-    }
 })();
 
 // Modal functionality with focus trap and improved initialization
