@@ -1,0 +1,1065 @@
+
+<!-- Combined Section: experiment-section-snippet.html + signup-form-snippet.html -->
+
+    <!-- Google Fonts: Manrope and Stack Sans Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Stack+Sans+Text:wght@200;250;300;500&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        /* Mobile version - visible by default, hidden on desktop */
+        .mobile-version {
+            display: block;
+            width: 100%;
+        }
+        
+        .desktop-version {
+            width: 100%;
+        }
+
+        .combined-root[data-layout="desktop"] .mobile-version {
+            display: none !important;
+        }
+
+        .combined-root[data-layout="desktop"] .desktop-version {
+            display: block !important;
+        }
+
+        .combined-root[data-layout="mobile"] .desktop-version {
+            display: none !important;
+        }
+
+        .mobile-scale-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .mobile-scale-container[data-scale-active="true"] {
+            height: var(--scale-wrapper-height);
+        }
+
+        .mobile-scale-container[data-scale-active="true"] .mobile-scale-inner {
+            transform-origin: top left;
+            transform: var(--scale-transform, scale(1));
+            width: var(--scale-base-width, auto);
+        }
+
+        .mobile-scale-inner {
+            width: 100%;
+        }
+        
+        /* Default: hide desktop image container on mobile/tablet */
+        #desktopExperimentSvg {
+            display: none;
+        }
+         /* Tablet breakpoint for better responsiveness */
+         @media (min-width: 768px) and (max-width: 1023px) {
+            .mobile-version {
+                display: block !important;
+            }
+            .desktop-version {
+                display: none !important;
+            }
+            #experiment-frame,
+            #signup-frame {
+                max-width: 600px;
+            }
+        }
+        
+         /* Desktop overrides for elements inside loaded snippets */
+         @media (min-width: 1024px) {
+            /* Hide mobile version on desktop */
+            .mobile-version {
+                display: none !important;
+            }
+            
+            /* Show desktop version on desktop */
+            .desktop-version {
+                display: block !important;
+                width: 100%;
+            }
+            
+            /* Desktop main container - no padding/margin, height matches image */
+            .desktop-main-container {
+                display: flex;
+                flex-direction: row;
+                margin: 30px 0;
+                padding: 0;
+                width: 100%;
+                max-width: 2072.4px;
+                align-items: stretch;
+                gap: 40px;
+            }
+            
+            /* First div - 60% width, contains image */
+            .desktop-image-container {
+                flex: 0 0 60%;
+                width: 60%;
+                display: flex;
+                align-items: flex-start;
+                align-self: stretch;
+            }
+            
+            .desktop-image-container img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            
+            /* Second div - 40% width, contains column layout, matches image height */
+            .desktop-content-container {
+                flex: 0 0 40%;
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-self: stretch;
+                min-height: 100%;
+            }
+            
+            /* Desktop experiment section - flex row, left aligned, fills available space */
+            .desktop-experiment-section {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 14.4px;
+                flex: 0 0 20%;
+            }
+            
+            /* Desktop experiment label - bracket label "[ get involved with us ]" */
+            .desktop-experiment-label {
+                font-family: 'Stack Sans Text', sans-serif;
+                font-weight: 300;
+                font-size: clamp(19.2px, 1.524vw, 26.4px);
+                line-height: 1.09;
+                color: #010101;
+                padding-top: 25px;
+                padding-left: 50px;
+            }
+            
+            /* Desktop experiment heading - main heading "join the experiment" */
+            .desktop-experiment-heading {
+                font-family: 'Stack Sans Text', sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: clamp(28.8px, 2.772vw, 48px);
+                line-height: 1;
+                color: #010101;
+                white-space: normal;
+                margin: 0;
+                padding-top: 25px;
+                padding-left: 50px;
+            }
+            
+            .desktop-experiment-heading .underline {
+                text-decoration: underline;
+            }
+            
+            /* Desktop signup section - flex column with 3 divs, fills available space */
+            .desktop-signup-section {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 80%;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Desktop signup description - same properties as original desktop but without position */
+            .desktop-signup-description {
+                font-family: 'Stack Sans Text', sans-serif;
+                font-weight: 300;
+                font-size: clamp(15.839712px, 1.176664vw, 20.365344px);
+                line-height: 22.639474px;
+                color: #000000;
+                margin: 0 0 28.8px 0;
+                white-space: pre-line;
+                text-align: left;
+            }
+            
+            /* Desktop signup inputs container - flex column */
+            .desktop-signup-inputs {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 19.2px;
+                align-items: center;
+                width: 100%;
+            }
+            
+            /* Desktop email input - same properties as original desktop but without position */
+            .desktop-signup-email-input {
+                width: 100%;
+                max-width: 444.252px;
+                height: 55.032px;
+                padding: 0 56.412px 0 38.808px;
+                background-color: #F1F2F3;
+                border: none;
+                border-radius: 28.02px;
+                font-family: 'Stack Sans Text', sans-serif;
+                font-size: clamp(13.2px, 0.996vw, 17.28px);
+                font-weight: 250;
+                line-height: 18.996px;
+                color: #9F9F9F;
+                margin: 0 auto 19.2px auto;
+                box-sizing: border-box;
+                text-align: left;
+            }
+            
+            .desktop-signup-email-input::placeholder {
+                color: #9F9F9F;
+                font-weight: 250;
+                font-size: clamp(13.2px, 0.996vw, 17.28px);
+                line-height: 18.996px;
+            }
+            
+            .desktop-signup-email-input:focus {
+                outline: none;
+                background-color: #EFEFEF;
+            }
+            
+            /* Desktop checkbox item - same properties as original desktop but without position */
+            .desktop-signup-checkbox-item {
+                width: 100%;
+                max-width: 444.252px;
+                height: 55.032px;
+                padding: 0 56.412px 0 38.808px;
+                background-color: #F1F2F3;
+                border: none;
+                border-radius: 28.02px;
+                margin: 0 auto 19.2px auto;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 12px;
+                box-sizing: border-box;
+                cursor: pointer;
+            }
+            
+            .desktop-signup-custom-checkbox {
+                width: 21.6px;
+                height: 19.2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                position: relative;
+            }
+            
+            .desktop-signup-custom-checkbox svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            
+            .desktop-signup-custom-checkbox .checkmark {
+                position: absolute;
+                font-size: 14.4px;
+                color: #000000;
+                line-height: 1;
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+            
+            .desktop-signup-checkbox-item input[type="checkbox"] {
+                display: none;
+            }
+            
+            .desktop-signup-checkbox-item input[type="checkbox"]:checked + .desktop-signup-custom-checkbox .checkmark {
+                opacity: 1;
+            }
+            
+            .desktop-signup-checkbox-label {
+                font-family: 'Stack Sans Text', sans-serif;
+                font-size: clamp(13.2px, 0.996vw, 17.28px);
+                font-weight: 250;
+                line-height: 18.996px;
+                color: #9F9F9F;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+            
+            /* Desktop submit button and agreement container */
+            .desktop-signup-submit-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            /* Desktop submit button - same properties as original desktop but without position */
+            .desktop-signup-submit-btn {
+                width: 100%;
+                max-width: 444.252px;
+                height: 45.6px;
+                background-color: #000000;
+                color: #ffffff;
+                border: none;
+                border-radius: 20.016px;
+                font-family: 'Manrope', sans-serif;
+                font-size: clamp(16.8px, 1.332vw, 23.04px);
+                font-weight: 800;
+                line-height: 26.004px;
+                text-align: center;
+                cursor: pointer;
+                margin: 9.6px auto 14.2px auto;
+                padding: 0 28.8px;
+                box-shadow:
+                    70.044px 118.188px 55.104px rgba(0, 0, 0, 0.01),
+                    40.02px 67.188px 46.08px rgba(0, 0, 0, 0.02),
+                    18.012px 30.024px 34.008px rgba(0, 0, 0, 0.03),
+                    4.008px 6.996px 18.996px rgba(0, 0, 0, 0.04);
+                transition: background-color 0.3s;
+            }
+            
+            .desktop-signup-submit-btn:hover {
+                background-color: #333333;
+            }
+            
+            .desktop-signup-submit-btn:active {
+                background-color: #000000;
+            }
+            
+            /* Desktop agreement - same properties as mobile but without position */
+            .desktop-signup-agreement {
+                display: inline-flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 9.6px;
+                margin-top: 9.6px;
+                vertical-align: middle;
+            }
+            
+            .desktop-signup-agreement-checkbox {
+                width: 19.2px;
+                height: 17.6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                cursor: pointer;
+                margin-top: 2.4px;
+                position: relative;
+            }
+            
+            .desktop-signup-agreement-checkbox svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            
+            .desktop-signup-agreement-checkbox .checkmark {
+                position: absolute;
+                font-size: 12px;
+                color: #000000;
+                line-height: 1;
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+            
+            .desktop-signup-agreement input[type="checkbox"] {
+                display: none;
+            }
+            
+            .desktop-signup-agreement input[type="checkbox"]:checked + .desktop-signup-agreement-checkbox .checkmark {
+                opacity: 1;
+            }
+            
+            .desktop-signup-agreement-label {
+                font-family: 'Stack Sans Text', sans-serif;
+                font-size: 12.24px;
+                font-weight: 300;
+                line-height: 13.5966px;
+                letter-spacing: -0.02em;
+                color: #9F9F9F;
+                cursor: pointer;
+                white-space: nowrap;
+                text-align: left;
+            }
+            
+            /* Show desktop image and hide mobile image on desktop */
+            .experiment-svg-container {
+                display: none !important;
+            }
+             /* Ensure heading stays at the specified viewport-relative position */
+             .experiment-heading {
+                 position: fixed !important;
+                 width: 190.57px !important;
+                 height: 66.71px !important;
+                left: 1103.43px !important;
+                 top: 33.86px !important;
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-style: normal !important;
+                 font-weight: 500 !important;
+                 font-size: 33.35px !important;
+                 line-height: 33.35px !important;
+                 color: #010101 !important;
+                 white-space: normal !important; /* allow line breaks */
+             }
+             /* Force the explicit line break on desktop */
+             .experiment-heading br { display: inline !important; }
+             /* "[ get involved with us ]" label placement and typography */
+             .experiment-label {
+                 position: fixed; /* viewport-relative */
+                 width: 100.74px !important;
+                 height: 60px !important;
+                left: 972.06px !important;
+                 top: 38.54px !important;
+ 
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-weight: 300 !important;
+                 font-size: 18.34px !important;
+                 line-height: 20.01px !important;
+                 color: #010101 !important;
+             }
+             /* Signup description placement and typography */
+             .signup-description {
+                 position: fixed; /* viewport-relative */
+                 width: 371.67px !important;
+                 height: 65px !important;
+                left: 972.05px !important;
+                 top: 181.20px !important;
+ 
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-weight: 300 !important;
+                 font-size: 15.01px !important;
+                 line-height: 20.01px !important;
+                 color: #000000 !important;
+                 white-space: normal !important; /* allow explicit line break */
+             }
+             .signup-description br { display: inline !important; }
+             /* Agreement label placement and typography */
+             .signup-agreement {
+                 position: fixed !important; /* viewport-relative group */
+                left: 1010.30px !important;  /* 984.30 - (16 + 8) */
+                 top: 546.63px !important;
+                 display: flex !important;
+                 align-items: center !important;
+                 gap: 8px !important;
+                 height: 16px !important;
+             }
+             /* Checkbox box aligned to the left of text */
+             .signup-agreement-checkbox {
+                 position: static !important;
+                 width: 16px !important;
+                 height: 16px !important;
+                 flex-shrink: 0 !important;
+             }
+             /* Consent line text on a single line, aligned right of checkbox */
+             .signup-agreement-label,
+             .consent-line {
+                 position: static !important;
+                 width: 326.99px !important;
+                 height: 13.33px !important;
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-style: normal !important;
+                 font-weight: 300 !important;
+                 font-size: 10px !important;
+                 line-height: 13.33px !important;
+                 letter-spacing: -0.02em !important;
+                 color: #9F9F9F !important;
+                 white-space: nowrap !important;
+             }
+             /* Frame 22 – Receive news (second checkbox row) */
+             #signup-frame .signup-checkbox-item:nth-of-type(2) {
+                 position: fixed; /* viewport-relative */
+                 width: 370.21px !important;
+                 height: 45.86px !important;
+                left: 972.06px !important;
+                 top: 382.75px !important;
+ 
+                 display: flex !important;
+                 justify-content: center !important;
+                 align-items: center !important;
+                 padding: 0 47.01px 0 0 !important;
+                 gap: 10px !important;
+ 
+                 background: #F1F2F3 !important;
+                 border-radius: 23.35px !important;
+             }
+             /* Receive news label inside Frame 22 */
+             #signup-frame .signup-checkbox-item:nth-of-type(2) .signup-checkbox-label {
+                 position: absolute !important;
+                 width: 155.98px !important;
+                 height: 15.83px !important;
+                 left: 62.78px !important;
+ 
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-weight: 250 !important;
+                 font-size: 11.99px !important;
+                 line-height: 15.83px !important;
+                 color: #9F9F9F !important;
+             }
+             /* Frame 21 – Join as beta (first checkbox row) */
+             #signup-frame .signup-checkbox-item:nth-of-type(1) {
+                 position: fixed; /* viewport-relative */
+                 width: 370.21px !important;
+                 height: 45.86px !important;
+                left: 972.06px !important;
+                 top: 318.22px !important;
+ 
+                 display: flex !important;
+                 justify-content: center !important;
+                 align-items: center !important;
+                 padding: 0 47.01px 0 0 !important;
+                 gap: 10px !important;
+ 
+                 background: #F1F2F3 !important;
+                 border-radius: 23.35px !important;
+             }
+             /* Join as beta label inside Frame 21 */
+             #signup-frame .signup-checkbox-item:nth-of-type(1) .signup-checkbox-label {
+                 position: absolute !important;
+                 width: 115.02px !important;
+                 height: 15.83px !important;
+                 left: 62.78px !important;
+ 
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-weight: 250 !important;
+                 font-size: 11.99px !important;
+                 line-height: 15.83px !important;
+                 color: #9F9F9F !important;
+                 white-space: nowrap !important; /* single line */
+                 overflow: hidden !important;
+                 text-overflow: ellipsis !important;
+             }
+             /* Ensure checkbox visual sits to the left and aligns vertically */
+             #signup-frame .signup-checkbox-item:nth-of-type(1) .signup-custom-checkbox,
+             #signup-frame .signup-checkbox-item:nth-of-type(2) .signup-custom-checkbox {
+                 position: absolute !important;
+                 left: 28px !important;
+                 top: 50% !important;
+                 transform: translateY(-50%) !important;
+             }
+             /* Keep the native checkbox aligned and non-intrusive if visible */
+             #signup-frame .signup-checkbox-item:nth-of-type(1) input[type="checkbox"],
+             #signup-frame .signup-checkbox-item:nth-of-type(2) input[type="checkbox"] {
+                 position: absolute !important;
+                 left: 28px !important;
+                 top: 50% !important;
+                 transform: translateY(-50%) !important;
+                 margin: 0 !important;
+             }
+             /* Prevent wrapping for all checkbox labels */
+             #signup-frame .signup-checkbox-item .signup-checkbox-label {
+                 white-space: nowrap !important;
+             }
+             /* Frame 20 – Enter your email (email input) */
+             #signup-frame .signup-email-input {
+                 position: fixed !important; /* viewport-relative */
+                 width: 370.21px !important;
+                 height: 45.86px !important;
+                left: 972.06px !important;
+                 top: 260px !important;
+ 
+                 display: flex !important;
+                 justify-content: center !important;
+                 align-items: center !important;
+                 padding: 0 47.01px 0 32.34px !important; /* right padding + left text inset */
+                 gap: 10px !important;
+ 
+                 background: #F1F2F3 !important;
+                 border: none !important;
+                 border-radius: 23.35px !important;
+                 box-sizing: border-box !important;
+ 
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-weight: 250 !important;
+                 font-size: 11.99px !important;
+                 line-height: 15.83px !important;
+                 color: #9F9F9F !important;
+             }
+             /* Placeholder to match "enter your email" style */
+             #signup-frame .signup-email-input::placeholder {
+                 font-family: 'Stack Sans Text', sans-serif !important;
+                 font-weight: 250 !important;
+                 font-size: 11.99px !important;
+                 line-height: 15.83px !important;
+                 color: #9F9F9F !important;
+             }
+             /* Newsletter CTA button */
+             .signup-submit-btn {
+                 position: fixed !important; /* viewport-relative */
+                 width: 370.21px !important;
+                 height: 38px !important;
+                left: 972.20px !important;
+                 top: 483.47px !important;
+ 
+                 display: flex !important;
+                 justify-content: center !important;
+                 align-items: center !important;
+                 padding: 0 24px !important;
+                 gap: 10px !important;
+ 
+                 background: #000000 !important;
+                 border-radius: 16.68px !important;
+                 border: none !important;
+                 box-shadow:
+                     58.37px 98.49px 45.92px rgba(0, 0, 0, 0.01),
+                     33.35px 55.99px 38.40px rgba(0, 0, 0, 0.02),
+                     15.01px 25.02px 28.34px rgba(0, 0, 0, 0.03),
+                     3.34px 5.83px 15.83px rgba(0, 0, 0, 0.04) !important;
+ 
+                 font-family: 'Manrope', sans-serif !important;
+                 font-weight: 800 !important;
+                 font-size: 16.01px !important;
+                 line-height: 21.67px !important;
+                 text-align: center !important;
+                 color: #FFFFFF !important;
+                 cursor: pointer !important;
+             }
+         }
+        .combined-root {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .section {
+            display: block;
+            width: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        /* Optional: separate the two sections visually while preserving each section's own styles */
+        .section + .section {
+            margin-top: 0 !important;
+        }
+        iframe.combined-embed {
+            width: 100%;
+            border: 0;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <div class="combined-root" id="combinedRoot">
+
+        <!-- ========================================= -->
+        <!-- Mobile Version                           -->
+        <!-- ========================================= -->
+        <div class="mobile-version">
+            <div class="mobile-scale-container" data-base-width="393" data-scale-target=".mobile-scale-inner">
+                <div class="mobile-scale-inner">
+
+                    <!-- Experiment section (inline, no script) -->
+                    <div class="section" id="experimentSection">
+             <style>
+                 /* Minimal mobile styles for experiment section (kept lightweight) */
+                #experiment-frame {
+                    width: 100%;
+                    max-width: 393px;
+                    min-height: 300px;
+                    margin: 0 auto;
+                    position: relative;
+                    padding: clamp(20px, 7.6vw, 30px) clamp(20px, 5vw, 0) 0 clamp(20px, 5vw, 0);
+                    box-sizing: border-box;
+                }
+                
+                /* Ensure both main divs have the same width by matching padding */
+                #experiment-frame,
+                #signup-frame {
+                    padding-left: clamp(20px, 5vw, 0);
+                    padding-right: clamp(20px, 5vw, 0);
+                }
+                 #experiment-wrapper {
+                     width: 100%;
+                     min-height: 300px;
+                     margin: 0;
+                     padding: 0;
+                     background: transparent;
+                 }
+                 .experiment-heading .underline { text-decoration: underline; }
+                .experiment-svg-container {
+                    width: 100%;
+                    margin: 0;
+                    padding-top: clamp(15px, 6.3vw, 25px);
+                    padding-bottom: clamp(2px, 6.3vw, 12px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .experiment-svg-container img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+                .experiment-label {
+                    font-family: 'Stack Sans Text', sans-serif;
+                    font-weight: 300;
+                    font-size: clamp(9.44px, 2.95vw, 11.8px);
+                    line-height: clamp(11.8px, 3.54vw, 14.16px);
+                    color: #010101;
+                    margin: 0 0 0 0;
+                }
+                .experiment-heading {
+                    font-family: 'Stack Sans Notch', sans-serif;
+                    font-weight: 500;
+                    color: #010101;
+                    margin: 0 0 clamp(3px, 1vw, 4px) 0;
+                    font-size: clamp(21.24px, 6.49vw, 28.32px);
+                    line-height: clamp(25.96px, 7.67vw, 33.04px);
+                }
+             </style>
+             <div id="experiment-wrapper">
+                 <div id="experiment-frame">
+                     <p class="experiment-label">[ get involved with us ]</p>
+                     <h2 class="experiment-heading">join the <span class="underline">experiment</span></h2>
+                     <!-- Mobile image container (hidden on desktop by media rule) -->
+                     <div class="experiment-svg-container">
+                        <img src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/desktop-m.png" alt="Experiment mobile graphic">
+                     </div>
+                 </div>
+             </div>
+                    </div>
+
+                    <!-- Signup section (inline, no script) -->
+                    <div class="section" id="signupSection">
+             <!-- Signup Form Styles (mobile baseline) -->
+             <style>
+                #signup-frame {
+                    width: 100%;
+                    max-width: 393px;
+                    min-height: 300px;
+                    margin: clamp(20px, 7.6vw, 30px) auto 0 auto;
+                    position: relative;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    background-color: transparent;
+                    font-family: 'Stack Sans Text', sans-serif;
+                    box-sizing: border-box;
+                }
+                 #signup-wrapper {
+                     background-color: transparent;
+                     width: 100%;
+                     min-height: 300px;
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                     padding: 0;
+                     margin: 0;
+                 }
+                .signup-description {
+                    font-family: 'Stack Sans Text', sans-serif;
+                    font-weight: 300;
+                    font-size: clamp(11.088px, 3.528vw, 13.838px);
+                    line-height: clamp(16.128px, 5.2395vw, 20.756px);
+                    color: #000000;
+                    margin: 0 0 clamp(18px, 6vw, 24px) 0;
+                    white-space: pre-line;
+                    text-align: left;
+                }
+                .signup-email-input {
+                    width: 100%;
+                    height: clamp(35px, 9.9vw, 39px);
+                    padding: 0 clamp(15px, 5vw, 20px);
+                    padding-left: calc(clamp(15px, 5vw, 20px) + 7px);
+                    background-color: #F5F5F5;
+                    border: none;
+                    border-radius: clamp(17px, 4.9vw, 19.5px);
+                    font-family: 'Stack Sans Text', sans-serif;
+                    font-size: clamp(9px, 2.75vw, 10.815px);
+                    font-weight: 200;
+                    color: #000000;
+                    margin: 0 auto clamp(12px, 4vw, 16px) auto;
+                    box-sizing: border-box;
+                    display: block;
+                }
+                 .signup-email-input::placeholder {
+                    color: #BFBFBF;
+                    font-weight: 200;
+                    font-size: clamp(9px, 2.75vw, 10.815px);
+                }
+                 .signup-email-input:focus {
+                     outline: none;
+                     background-color: #EFEFEF;
+                 }
+                .signup-checkbox-item {
+                    width: 100%;
+                    height: clamp(35px, 9.9vw, 39px);
+                    padding: 0 clamp(15px, 5vw, 20px);
+                    background-color: #F5F5F5;
+                    border: none;
+                    border-radius: clamp(17px, 4.9vw, 19.5px);
+                    margin: 0 auto clamp(12px, 4vw, 16px) auto;
+                    display: flex;
+                    align-items: center;
+                    gap: clamp(10px, 3vw, 12px);
+                    box-sizing: border-box;
+                    cursor: pointer;
+                }
+                 .signup-custom-checkbox {
+                    width: clamp(16px, 4.6vw, 18px);
+                    height: clamp(16px, 4.6vw, 18px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    position: relative;
+                }
+                 .signup-custom-checkbox svg {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                 }
+                 .signup-custom-checkbox .checkmark {
+                    position: absolute;
+                    font-size: clamp(10px, 3vw, 12px);
+                    line-height: 1;
+                    color: #000000;
+                    opacity: 0;
+                    transition: opacity 0.2s;
+                 }
+                 .signup-checkbox-item input[type="checkbox"] { display: none; }
+                 .signup-checkbox-item input[type="checkbox"]:checked + .signup-custom-checkbox .checkmark {
+                     opacity: 1;
+                 }
+                .signup-checkbox-label {
+                    font-family: 'Stack Sans Text', sans-serif;
+                    font-size: clamp(7.5px, 2.2vw, 8.652px);
+                    font-weight: 300;
+                    color: #9F9F9F;
+                    cursor: pointer;
+                }
+                .signup-submit-btn {
+                    width: 100%;
+                    height: clamp(36px, 10.2vw, 40px);
+                    background-color: #000000;
+                    color: #ffffff;
+                    border: none;
+                    border-radius: clamp(18px, 5.1vw, 20px);
+                    font-family: 'Stack Sans Text', sans-serif;
+                    font-size: clamp(12px, 3.6vw, 14px);
+                    font-weight: 500;
+                    cursor: pointer;
+                    margin: clamp(25px, 8.9vw, 35px) auto clamp(12px, 4vw, 11px) auto;
+                    transition: background-color 0.3s;
+                    display: block;
+                }
+                 .signup-submit-btn:hover { background-color: #333333; }
+                 .signup-submit-btn:active { background-color: #000000; }
+                .signup-agreement {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 8px;
+                    margin: 8px auto 0 auto;
+                    vertical-align: middle;
+                }
+                 .signup-agreement-checkbox {
+                    width: clamp(16px, 4vw, 18px);
+                    height: clamp(16px, 4vw, 18px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    cursor: pointer;
+                    margin-top: 0;
+                    position: relative;
+                }
+                 .signup-agreement-checkbox svg {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                 }
+                 .signup-agreement-checkbox .checkmark {
+                    position: absolute;
+                    font-size: clamp(10px, 3vw, 12px);
+                    line-height: 1;
+                    color: #000000;
+                    opacity: 0;
+                    transition: opacity 0.2s;
+                 }
+                 .signup-agreement input[type="checkbox"] { display: none; }
+                 .signup-agreement input[type="checkbox"]:checked + .signup-agreement-checkbox .checkmark {
+                     opacity: 1;
+                 }
+                 .signup-agreement-label {
+                    font-family: 'Stack Sans Text', sans-serif;
+                    font-size: clamp(8.64px, 2.64vw, 10.368px);
+                    font-weight: 300;
+                    color: #9F9F9F;
+                    line-height: clamp(11.52px, 3.552vw, 13.824px);
+                    cursor: pointer;
+                }
+             </style>
+             <div id="signup-wrapper">
+                 <div id="signup-frame">
+                     <p class="signup-description">Get early access to our betas, exclusive drops, and the
+  the occasional chaotic update from the armor lab.</p>
+                     <input type="email" class="signup-email-input" placeholder="Enter your email" required>
+                     <label class="signup-checkbox-item">
+                         <input type="checkbox" id="betaTester">
+                         <div class="signup-custom-checkbox" aria-hidden="true">
+                             <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <rect x="0.32553" y="0.32553" width="16.7186" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                             </svg>
+                             <span class="checkmark">✓</span>
+                         </div>
+                         <span class="signup-checkbox-label">Join as a beta tester</span>
+                     </label>
+                     <label class="signup-checkbox-item">
+                         <input type="checkbox" id="receiveNews">
+                         <div class="signup-custom-checkbox" aria-hidden="true">
+                             <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <rect x="0.32553" y="0.32553" width="16.7186" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                             </svg>
+                             <span class="checkmark">✓</span>
+                         </div>
+                         <span class="signup-checkbox-label">Receive news and updates</span>
+                     </label>
+                     <button class="signup-submit-btn">Count me in</button>
+                    <label class="signup-agreement">
+                        <input type="checkbox" id="agreeTerms">
+                        <div class="signup-agreement-checkbox" aria-hidden="true">
+                            <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="0.32553" y="0.32553" width="16.7186" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                            </svg>
+                            <span class="checkmark">✓</span>
+                        </div>
+                        <span class="signup-agreement-label">I agree to receive updates and messages from your company</span>
+                    </label>
+                 </div>
+             </div>
+                    </div> <!-- /#signupSection -->
+
+                </div> <!-- /.mobile-scale-inner -->
+            </div> <!-- /.mobile-scale-container -->
+        </div> <!-- /.mobile-version -->
+
+        <!-- ========================================= -->
+        <!-- Desktop Version                          -->
+        <!-- ========================================= -->
+        <div class="desktop-version">
+             <div class="desktop-main-container">
+                 <!-- First div - 60% width, contains image -->
+                 <div class="desktop-image-container">
+                     <img src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/desktop.png" alt="Experiment desktop graphic">
+                 </div>
+                 <!-- Second div - 40% width, contains column layout -->
+                 <div class="desktop-content-container">
+                     <!-- First column div (experiment section for desktop) -->
+                     <div class="desktop-experiment-section">
+                        <!-- First div - contains label -->
+                        <div class="desktop-experiment-label">[ get<br>involved<br>with us ]</div>
+                         <!-- Second div - contains heading -->
+                         <div class="desktop-experiment-heading">join the<br><span class="underline">experiment</span></div>
+                     </div>
+                     <!-- Second column div (signup section for desktop) -->
+                     <div class="desktop-signup-section">
+                         <!-- First div - description text -->
+                         <div class="desktop-signup-description">Get early access to our betas, exclusive drops, and<br>the occasional chaotic update from the armor lab.</div>
+                         <!-- Second div - 3 input fields -->
+                         <div class="desktop-signup-inputs">
+                             <input type="email" class="desktop-signup-email-input" placeholder="Enter your email" required>
+                             <label class="desktop-signup-checkbox-item">
+                                 <input type="checkbox" id="desktopBetaTester">
+                                <div class="desktop-signup-custom-checkbox" aria-hidden="true">
+                                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="0.32553" y="0.32553" width="16.7186" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                                    </svg>
+                                    <span class="checkmark">✓</span>
+                                </div>
+                                 <span class="desktop-signup-checkbox-label">Join as a beta tester</span>
+                             </label>
+                             <label class="desktop-signup-checkbox-item">
+                                 <input type="checkbox" id="desktopReceiveNews">
+                                <div class="desktop-signup-custom-checkbox" aria-hidden="true">
+                                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="0.32553" y="0.32553" width="16.7186" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                                    </svg>
+                                    <span class="checkmark">✓</span>
+                                </div>
+                                 <span class="desktop-signup-checkbox-label">Receive news and updates</span>
+                             </label>
+                         </div>
+                         <!-- Third div - button and agreement -->
+                         <div class="desktop-signup-submit-container">
+                             <button class="desktop-signup-submit-btn">Count me in</button>
+                            <label class="desktop-signup-agreement">
+                                <input type="checkbox" id="desktopAgreeTerms">
+                                <div class="desktop-signup-agreement-checkbox" aria-hidden="true">
+                                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="0.32553" y="0.32553" width="16.7186" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                                    </svg>
+                                    <span class="checkmark">✓</span>
+                                </div>
+                                <span class="desktop-signup-agreement-label">I agree to receive updates and messages from your company</span>
+                            </label>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
+
+<script>
+(function () {
+    const containers = document.querySelectorAll('.mobile-scale-container');
+    if (!containers.length || typeof ResizeObserver === 'undefined') {
+        return;
+    }
+
+    const resizeObserver = new ResizeObserver(entries => {
+        entries.forEach(entry => {
+            const container = entry.target;
+            const selector = container.dataset.scaleTarget;
+            let target = null;
+
+            if (selector) {
+                target = selector === 'self' ? container : container.querySelector(selector);
+            }
+
+            if (!target) {
+                target = container.firstElementChild;
+            }
+
+            if (!target) {
+                return;
+            }
+
+            const baseWidth = Number(container.dataset.baseWidth) || target.offsetWidth;
+
+            container.removeAttribute('data-scale-active');
+            container.style.removeProperty('--scale-transform');
+            container.style.removeProperty('--scale-wrapper-height');
+            container.style.removeProperty('--scale-base-width');
+            target.style.removeProperty('transform');
+            target.style.removeProperty('transform-origin');
+            target.style.removeProperty('width');
+
+            const availableWidth = entry.contentRect.width;
+            if (availableWidth < baseWidth) {
+                const scale = availableWidth / baseWidth;
+                const targetHeight = target.offsetHeight;
+                container.style.setProperty('--scale-transform', `scale(${scale})`);
+                container.style.setProperty('--scale-base-width', `${baseWidth}px`);
+                container.style.setProperty('--scale-wrapper-height', `${targetHeight * scale}px`);
+                container.setAttribute('data-scale-active', 'true');
+            }
+        });
+    });
+
+    containers.forEach(container => resizeObserver.observe(container));
+})();
+
+(function () {
+    const root = document.getElementById('combinedRoot');
+    if (!root) {
+        return;
+    }
+
+    const updateLayout = () => {
+        const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+        root.dataset.layout = isDesktop ? 'desktop' : 'mobile';
+    };
+
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+})();
+</script>

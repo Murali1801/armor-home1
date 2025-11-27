@@ -1,0 +1,489 @@
+<!-- New HTML Snippet - Mobile & Desktop Versions -->
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Stack+Sans+Text:wght@200;250;300;500&family=Stack+Sans+Notch:wght@200..700&family=Permanent+Marker:wght@400&display=swap" rel="stylesheet">
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Mobile version - visible by default, hidden on desktop */
+    .mobile-version {
+        display: block;
+        width: 100%;
+        margin: 20px 0;
+        box-sizing: border-box;
+        height: auto;
+    }
+    
+    /* Desktop version - hidden by default, visible on desktop */
+    .desktop-version {
+        display: none !important;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Root container */
+    .snippet-root {
+        display: block;
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .mobile-scale-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Main div with three child divs */
+    .mobile-main-div {
+        display: flex;
+        flex-direction: column;
+        background-color: #8ABAD8;
+        background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/Home%20page/dots.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-top-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        width: 100%;
+        max-width: 1506px;
+        min-height: 396px;
+        max-height: 560px;
+        box-sizing: border-box;
+        margin: 30px 0;
+        padding: 20px;
+        overflow: hidden;
+    }
+    
+    /* Three child divs inside main div */
+    .mobile-hero-section {
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        margin: 0;
+        padding: 15px 0 29px 0;
+    }
+    
+    .mobile-description-section {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* Text styling for second div */
+    .mobile-description-text {
+        position: relative;
+        font-family: 'Stack Sans Text', sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16.8px;
+        line-height: 19.6px;
+        color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+        white-space: pre-line;
+        text-align: left;
+    }
+    
+    .mobile-content-section {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+    }
+    
+    /* Two child divs inside third div with 35:65 ratio */
+    .mobile-content-left {
+        flex: 0 0 35%;
+        width: 35%;
+        min-width: 92px;
+        box-sizing: border-box;
+        position: relative;
+    }
+    
+    /* Text styling for mobile-content-left */
+    .mobile-content-left-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-family: 'Permanent Marker', cursive;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 6.03px;
+        line-height: 6.63px;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+        white-space: pre-line;
+        text-align: left;
+    }
+    
+    .mobile-content-left-text .text-gap {
+        display: block;
+        margin-top: 2.5px;
+    }
+    
+    .mobile-content-right {
+        flex: 0 0 65%;
+        width: 65%;
+        box-sizing: border-box;
+        position: relative;
+    }
+    
+    /* Image styling for mobile-content-right */
+    .mobile-content-right img {
+        position: relative;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        object-fit: contain;
+        transform: rotate(29.59deg) scale(1.25);
+    }
+
+    .mobile-scale-container[data-scale-active="true"] {
+        height: var(--scale-wrapper-height);
+    }
+
+    .mobile-scale-container[data-scale-active="true"] .mobile-main-div {
+        transform-origin: top left;
+        transform: var(--scale-transform, scale(1));
+        width: var(--scale-base-width, auto);
+    }
+    
+    /* Text styling for first div */
+    .mobile-hero-text {
+        position: relative;
+        font-family: 'Stack Sans Notch', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13.28px;
+        line-height: 14.94px;
+        color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+    
+    /* Underline styling for specific text */
+    .mobile-hero-text .underline {
+        text-decoration: underline;
+    }
+    
+    /* Desktop overrides */
+    @media (min-width: 768px) {
+        /* Hide mobile version on desktop */
+        .mobile-version {
+            display: none !important;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        /* Show desktop version on desktop */
+        .desktop-version {
+            display: block !important;
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Desktop container styles */
+        .desktop-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Stack Sans Text', sans-serif;
+        }
+        
+        /* Desktop main div - flex row with two divs */
+        .desktop-main-div {
+            display: flex;
+            flex-direction: row;
+            background-color: #8ABAD8;
+            background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/Home%20page/dots.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-top-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            width: 100%;
+            min-width: 336px;
+            max-width: 1506px;
+            min-height: 396px;
+            max-height: 560px;
+            box-sizing: border-box;
+            margin: 30px 0;
+            padding: 40px;
+            overflow: hidden;
+        }
+        
+        /* First div - contains 3 text sections */
+        .desktop-content-div {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            box-sizing: border-box;
+        }
+        
+        /* Second div - contains image */
+        .desktop-image-div {
+            flex: 0 0 auto;
+            min-width: 300px;
+            width: auto;
+            height: 100%;
+            min-height: 356px;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            overflow: visible;
+        }
+        
+        /* Desktop hero section */
+        .desktop-hero-section {
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            margin: 0;
+            padding: 15px 0 29px 0;
+        }
+        
+        /* Desktop description section */
+        .desktop-description-section {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Desktop description text */
+        .desktop-description-text {
+            position: relative;
+            font-family: 'Stack Sans Text', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16.8px;
+            line-height: 19.6px;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            white-space: pre-line;
+            text-align: left;
+        }
+        
+        /* Desktop content section */
+        .desktop-content-section {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+        }
+        
+        /* Desktop content left */
+        .desktop-content-left {
+            flex: 0 0 35%;
+            width: 35%;
+            min-width: 92px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        /* Desktop hero text */
+        .desktop-hero-text {
+            position: relative;
+            font-family: 'Stack Sans Notch', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 26.56px;
+            line-height: 24.07px;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+        
+        /* Desktop underline styling */
+        .desktop-hero-text .underline {
+            text-decoration: underline;
+        }
+        
+        /* Desktop content left text */
+        .desktop-content-left-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-family: 'Permanent Marker', cursive;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10.8px;
+            line-height: 8.55px;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            white-space: pre-line;
+            text-align: left;
+        }
+        
+        .desktop-content-left-text .text-gap {
+            display: block;
+            margin-top: 2.5px;
+        }
+        
+        /* Desktop image styling */
+        .desktop-image-div img {
+            position: relative;
+            width: auto;
+            height: auto;
+            max-width: 400px;
+            max-height: 400px;
+            min-width: 200px;
+            object-fit: contain;
+            transform: rotate(29.59deg) scale(1.375);
+            display: block;
+        }
+    }
+    
+    /* Ensure desktop is hidden when mobile is visible */
+    @media (max-width: 767px) {
+        .desktop-version {
+            display: none !important;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+</style>
+
+<div class="snippet-root" id="snippetRoot">
+    
+    <!-- ============================================ -->
+    <!-- MOBILE VERSION - Visible on mobile only -->
+    <!-- ============================================ -->
+    <div class="mobile-version">
+        <div class="mobile-scale-container" data-base-width="336">
+            <!-- Main div with three child divs -->
+            <div class="mobile-main-div">
+            <div class="mobile-hero-section">
+                <p class="mobile-hero-text">armor is where <span class="underline">design obsession meets gaming<br>culture</span>.</p>
+            </div>
+            <div class="mobile-description-section">
+                <p class="mobile-description-text">We build expressive, intelligent devices that make everyday tech feel alive
+and a little rebellious.</p>
+                <p class="mobile-description-text">We're not trying to out-spec anyone.
+We're here to make gaming fun again.</p>
+            </div>
+            <div class="mobile-content-section">
+                <div class="mobile-content-left">
+                    <p class="mobile-content-left-text">*
+
+Fun tech. Serious Design.
+<span class="text-gap">Built for gamers who explore.</span></p>
+                </div>
+                <div class="mobile-content-right">
+                    <img src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/Home%20page/dude%20character_home%20page.png" alt="Dude character">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- DESKTOP VERSION - Visible on desktop only -->
+    <!-- ============================================ -->
+    <div class="desktop-version">
+        <div class="desktop-container">
+            <!-- Desktop main div with two child divs (row layout) -->
+            <div class="desktop-main-div">
+                <!-- First div - contains 3 text sections -->
+                <div class="desktop-content-div">
+                    <div class="desktop-hero-section">
+                        <p class="desktop-hero-text">armor is where <span class="underline">design obsession meets gaming<br>culture</span>.</p>
+                    </div>
+                    <div class="desktop-description-section">
+                        <p class="desktop-description-text">We build expressive, intelligent devices that make everyday tech feel alive
+and a little rebellious.</p>
+                        <p class="desktop-description-text">We're not trying to out-spec anyone.
+We're here to make gaming fun again.</p>
+                    </div>
+                    <div class="desktop-content-section">
+                        <div class="desktop-content-left">
+                            <p class="desktop-content-left-text">*
+
+Fun tech. Serious Design.
+<span class="text-gap">Built for gamers who explore.</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second div - contains image -->
+                <div class="desktop-image-div">
+                    <img src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/Home%20page/dude%20character_home%20page.png" alt="Dude character">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+(function () {
+    const BASE_WIDTH = 336;
+    const containers = document.querySelectorAll('.mobile-scale-container');
+    if (!containers.length || typeof ResizeObserver === 'undefined') {
+        return;
+    }
+
+    const resizeObserver = new ResizeObserver(entries => {
+        entries.forEach(entry => {
+            const container = entry.target;
+            const target = container.querySelector('.mobile-main-div');
+            if (!target) {
+                return;
+            }
+
+            const baseWidth = Number(container.dataset.baseWidth) || BASE_WIDTH;
+            container.removeAttribute('data-scale-active');
+            container.style.removeProperty('--scale-transform');
+            container.style.removeProperty('--scale-wrapper-height');
+            container.style.removeProperty('--scale-base-width');
+            target.style.removeProperty('transform');
+            target.style.removeProperty('transform-origin');
+            target.style.removeProperty('width');
+
+            const availableWidth = entry.contentRect.width;
+            if (availableWidth < baseWidth) {
+                const scale = availableWidth / baseWidth;
+                const targetHeight = target.offsetHeight;
+                container.style.setProperty('--scale-transform', `scale(${scale})`);
+                container.style.setProperty('--scale-base-width', `${baseWidth}px`);
+                container.style.setProperty('--scale-wrapper-height', `${targetHeight * scale}px`);
+                container.setAttribute('data-scale-active', 'true');
+            }
+        });
+    });
+
+    containers.forEach(container => resizeObserver.observe(container));
+})();
+</script>

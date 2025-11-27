@@ -1,0 +1,2275 @@
+
+<!-- Carousel Section Snippet - HOME PAGE - Mobile & Desktop Versions -->
+
+<!-- GSAP removed - using CSS transitions instead -->
+
+<!-- Font Links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Stack+Sans+Text:wght@200..700&display=swap" rel="stylesheet">
+
+<!-- Carousel Styles -->
+<style>
+
+    /* HOME PAGE - Mobile design */
+    #carousel-frame-mobile {
+        width: 100%;
+        max-width: 100%;
+        min-height: 365.47px;
+        margin: 0;
+        position: relative;
+        padding: 0;
+        background-color: transparent;
+        font-family: 'Stack Sans Text', sans-serif;
+        box-sizing: border-box;
+    }
+    
+    .mobile-main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        gap: 20px;
+    }
+    
+    .mobile-text-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        gap: 0;
+    }
+    
+    .mobile-text-group > div {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .mobile-carousel-wrapper {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mobile-subtitle {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-weight: 400;
+        font-size: 14.06px;
+        line-height: 15.3px;
+        letter-spacing: -0.02em;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .mobile-title {
+        font-family: 'Stack Sans Notch', sans-serif;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 26px;
+        letter-spacing: -0.02em;
+        color: #010101;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* HOME PAGE - Desktop design */
+    #carousel-frame-desktop {
+        width: 100%;
+        max-width: 100%;
+        min-height: 700px;
+        margin: 0;
+        position: relative;
+        padding: 0;
+        background-color: transparent;
+        font-family: 'Stack Sans Text', sans-serif;
+        box-sizing: border-box;
+        display: flex;
+        gap: 80px;
+        align-items: flex-start;
+    }
+    
+    /* Outer background wrapper */
+    #carousel-wrapper {
+        background-color: transparent;
+        width: 100%;
+        display: block;
+        padding: 0;
+        margin: 30px 0;
+        position: relative;
+    }
+    
+    @media (min-width: 768px) {
+        #carousel-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 30px 0;
+        }
+    }
+    
+    /* Carousel root container */
+    .carousel-root {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+    }
+    
+    /* Group 294 */
+    @media (min-width: 768px) {
+        .carousel-root {
+            position: relative;
+            width: 822.43px;
+            height: 529.29px;
+            margin: 0;
+            padding: 0;
+            flex-shrink: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+    
+    /* Responsive carousel for smaller desktop screens */
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .carousel-root {
+            width: 60vw;
+            height: calc(60vw * 0.644); /* Maintain aspect ratio (529.29/822.43) */
+            max-width: 822.43px;
+            max-height: 529.29px;
+        }
+        
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .product-card {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+        }
+        
+        .product-image {
+            min-height: 100%;
+        }
+    }
+    
+    /* Responsive carousel for medium screens */
+    @media (min-width: 992px) and (max-width: 1400px) {
+        .carousel-root {
+            width: 55vw;
+            height: calc(55vw * 0.644);
+            max-width: 822.43px;
+            max-height: 529.29px;
+        }
+    }
+    
+    /* Responsive carousel for large screens */
+    @media (min-width: 1401px) {
+        .carousel-root {
+            width: 822.43px;
+            height: 529.29px;
+        }
+    }
+    
+    /* Carousel container */
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        overflow: hidden; /* This is crucial for the slide effect */
+        aspect-ratio: 336 / 365.47;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    .carousel-container:active {
+        cursor: grabbing;
+    }
+    
+    @media (min-width: 768px) {
+        .carousel-container {
+            width: 822.43px;
+            height: 529.29px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1400px) {
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    /* Carousel track */
+    .carousel-track {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        touch-action: pan-y; /* Allow vertical scroll, block horizontal */
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    @media (min-width: 768px) {
+        .carousel-track {
+            width: 822.43px;
+            height: 529.29px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1400px) {
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    /* Product card */
+    .product-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 0;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        box-sizing: border-box;
+        opacity: 0;
+        z-index: 1;
+        transition: opacity 0.3s ease-out;
+    }
+    
+    /* image 255 */
+    @media (min-width: 768px) {
+        .product-card {
+            min-width: 822.43px;
+            width: 822.43px;
+            height: 529.29px;
+            min-height: 529.29px;
+            border-radius: 0 33.35px 0 33.35px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .product-card {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1400px) {
+        .product-card {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+        }
+    }
+    
+    .product-card.active {
+        opacity: 1;
+        z-index: 2;
+    }
+    
+    .product-card.transitioning {
+        z-index: 3;
+    }
+    
+    /* Product image placeholder */
+    .product-image {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        transition: opacity 0.3s ease-out;
+    }
+    
+    @media (min-width: 768px) {
+        .product-image {
+            min-height: 529.29px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .product-image {
+            min-height: 100%;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1400px) {
+        .product-image {
+            min-height: 100%;
+        }
+    }
+    
+    /* Product images inside cards - responsive */
+    .product-card img {
+        transition: transform 0.3s ease, opacity 0.3s ease-out;
+        position: absolute;
+        z-index: 2;
+    }
+    
+    /* Ensure images fade in sync with parent card */
+    .product-card:not(.active) img,
+    .product-card.transitioning img {
+        opacity: 0;
+    }
+    
+    .product-card.active img {
+        opacity: 1;
+    }
+    
+    /* Mobile product images - visible on mobile, hidden on desktop */
+    .mobile-product-img {
+        display: block;
+    }
+    
+    @media (min-width: 768px) {
+        .mobile-product-img {
+            display: none !important;
+        }
+    }
+    
+    /* Desktop product images - hidden on mobile, visible on desktop */
+    .desktop-product-img {
+        display: none !important;
+    }
+    
+    @media (min-width: 768px) {
+        .desktop-product-img {
+            display: block !important;
+        }
+    }
+    
+    /* Hide other product images on desktop that don't have specific classes */
+    @media (min-width: 768px) {
+        .product-card img:not(.mobile-product-img):not(.desktop-product-img) {
+            display: none;
+        }
+    }
+
+    /* Mobile slide-specific image adjustments (locked for cross-env parity) */
+    @media (max-width: 1023.98px) {
+        .slide2-img {
+            width: 130% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            position: absolute !important;
+            bottom: -30px !important;
+            right: -34px !important;
+        }
+        .slide3-img {
+            width: 120% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            position: absolute !important;
+            bottom: 10px !important;
+            right: -34px !important;
+        }
+    }
+    
+    /* Sold out badge */
+    .sold-out-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 61.89px;
+        height: 21.22px;
+        background-color: #FC832C;
+        color: #ffffff;
+        border-radius: 20px;
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 9.73px;
+        font-weight: 400;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    
+    @media (min-width: 768px) {
+        .sold-out-badge {
+            display: none;
+        }
+    }
+    
+    /* Bottom info section */
+    .product-info {
+        position: absolute;
+        bottom: 25px;
+        left: 20px;
+        right: 140px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    @media (max-width: 767px) {
+        .product-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            right: 16px;
+        }
+        
+        .product-info h3 {
+            margin: 0;
+        }
+        
+        .product-info p {
+            margin-top: 2px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .product-info {
+            display: none;
+        }
+    }
+    
+    .product-info h3 {
+        font-family: 'Stack Sans Notch', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 12.2px;
+        margin: 0 0 4px 0;
+        color: #000000;
+        pointer-events: none;
+    }
+    
+    .product-info h3 .highlight {
+        color: #FF6A00;
+    }
+    
+    .product-info p {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 8px;
+        font-weight: 400;
+        margin: 0;
+        color: #9F9F9F;
+        pointer-events: none;
+    }
+    
+    /* Notify me button */
+    .notify-btn {
+        position: absolute !important;
+        bottom: 25px !important;
+        right: 16px !important;
+        width: 114.4px;
+        height: 40px;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        border-radius: 25px;
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 11.86px;
+        font-weight: 400;
+        cursor: pointer !important;
+        white-space: nowrap;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 150 !important;
+        pointer-events: auto !important;
+        touch-action: manipulation;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease-in-out, transform 0.2s ease;
+    }
+    
+    .notify-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease-in-out;
+    }
+    
+    .notify-btn:hover {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px);
+    }
+    
+    .notify-btn:hover::before {
+        left: 100%;
+    }
+    
+    @media (min-width: 768px) {
+        .notify-btn {
+            display: none !important;
+        }
+    }
+    
+    /* Pagination dots */
+    .carousel-dots {
+        position: absolute;
+        bottom: clamp(15px, 2.5vw, 27px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(336px, 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(4px, 1.5vw, 6px);
+        z-index: 15;
+        pointer-events: none;
+    }
+    
+    @media (min-width: 768px) {
+        .carousel-dots {
+            bottom: clamp(27px, 2vw, 39px);
+            gap: 10px;
+            align-items: center;
+        }
+    }
+    
+    .carousel-dots .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #cccccc;
+        cursor: pointer;
+        transition: background-color 0.3s, width 0.3s, height 0.3s;
+        pointer-events: all;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .carousel-dots .dot.active {
+        background-color: #000000;
+    }
+    
+    /* Desktop Content Area (Right Side) */
+    .desktop-content {
+        display: none;
+    }
+    
+    @media (min-width: 768px) {
+        .desktop-content {
+            display: block;
+            flex: 1;
+            padding: 0;
+            position: static;
+        }
+        
+        .desktop-heading-section {
+            margin: 0;
+            position: static;
+        }
+        
+        /* [ what we've built ] */
+        .desktop-subtitle {
+            position: relative;
+            width: 63.58px;
+            height: 60.03px;
+            left: 0;
+            top: 0;
+            font-family: 'Stack Sans Text';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 18.34px;
+            line-height: 20.01px;
+            color: #010101;
+            margin: 0;
+            padding-top: 30px;
+            text-align: left;
+        }
+        
+        /* the current arsenal */
+        .desktop-title {
+            position: relative;
+            width: 212.76px;
+            height: 63.19px;
+            left: 0;
+            top: 0;
+            font-family: 'Stack Sans Notch';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 33.35px;
+            line-height: 33.35px;
+            color: #010101;
+            margin: 0;
+            padding-top: 30px;
+            text-align: left;
+        }
+        
+        /* Carousel Current Arsenal - Main container */
+        .desktop-slide-content {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 18.34px;
+            position: absolute;
+            width: 370.39px;
+            height: 241.58px;
+            left: 911.87px;
+            top: 239.72px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .desktop-slide-content.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        /* Frame 235 - Container for heading info and description */
+        .desktop-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 46.67px;
+            width: 370.39px;
+            height: 177.29px;
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 0;
+        }
+        
+        /* Frame 234 - Container for heading and gamers count */
+        .desktop-heading-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 6.67px;
+            width: 166.42px;
+            height: 43.45px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+        
+        /* version. H1 */
+        .desktop-slide-content h3,
+        .desktop-heading-info h3 {
+            width: 166.42px;
+            height: 20.00px;
+            font-family: 'Stack Sans Notch';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 26.68px;
+            line-height: 20.00px;
+            color: #000000;
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 0;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+        
+        /* 2000+ gamers love it */
+        .desktop-gamers-count {
+            width: 166.42px;
+            height: 16.80px;
+            font-family: 'Stack Sans Text';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 11.99px;
+            line-height: 15.84px;
+            color: #585858;
+            flex: none;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Description paragraph */
+        .desktop-description {
+            width: 370.39px;
+            height: 87.01px;
+            font-family: 'Stack Sans Text';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 15.01px;
+            line-height: 20.01px;
+            color: #000000;
+            flex: none;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+        
+        /* Frame 16 (CTA button container) */
+        .desktop-notify-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 12.00px 48.01px;
+            gap: 10.00px;
+            width: 214.02px;
+            height: 46.00px;
+            background: #000000;
+            border-radius: 23.35px;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            pointer-events: auto;
+            touch-action: manipulation;
+            margin: 0;
+            margin-top: 20px;
+            /* Notify me - Button text properties */
+            font-family: 'Stack Sans Text';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16.68px;
+            line-height: 21.68px;
+            text-align: center;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease-in-out, transform 0.2s ease;
+        }
+        
+        .desktop-notify-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease-in-out;
+        }
+        
+        .desktop-notify-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .desktop-notify-btn:hover::before {
+            left: 100%;
+        }
+    }
+    
+    /* Mobile Section - Visible on mobile, hidden on desktop */
+    .carousel-mobile-section {
+        display: block;
+    }
+    
+    /* Desktop Section - Hidden on mobile, visible on desktop */
+    .carousel-desktop-section {
+        display: none !important;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+    
+    /* Utility class to force-hide sections via JS */
+    .carousel-hidden {
+        display: none !important;
+    }
+    
+    @media (min-width: 768px) {
+        .carousel-mobile-section {
+            display: none !important;
+        }
+        
+        .carousel-desktop-section {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 529.29px;
+            overflow: visible;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .carousel-desktop-section {
+            height: auto;
+            min-height: calc(60vw * 0.644);
+            max-height: 529.29px;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1400px) {
+        .carousel-desktop-section {
+            height: auto;
+            min-height: calc(55vw * 0.644);
+            max-height: 529.29px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        /* First Div - 60% width */
+        .desktop-div-1 {
+            width: 60%;
+            flex: 0 0 60%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Second Div - 40% width */
+        .desktop-div-2 {
+            width: 40%;
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Child divs inside second div - 50:50 ratio */
+        .desktop-div-2-child-1 {
+            height: 50%;
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .desktop-div-2-child-2 {
+            height: 50%;
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Child divs inside second child - equal ratios (33.33% each) */
+        .desktop-div-2-child-2-inner-1 {
+            height: 33.33%;
+            flex: 0 0 33.33%;
+            display: flex;
+            align-items: flex-start;
+            padding-left: 80px;
+        }
+        
+        .desktop-div-2-child-2-inner-2 {
+            height: 33.33%;
+            flex: 0 0 33.33%;
+            display: flex;
+            align-items: flex-start;
+            padding-left: 80px;
+        }
+        
+        .desktop-div-2-child-2-inner-3 {
+            height: 33.33%;
+            flex: 0 0 33.33%;
+            display: flex;
+            align-items: flex-start;
+            padding-left: 80px;
+        }
+        
+        /* Grandchild divs inside first child - 30:70 ratio */
+        .desktop-div-2-child-1-inner-1 {
+            width: 30%;
+            flex: 0 0 30%;
+            padding-left: 80px;
+        }
+        
+        .desktop-div-2-child-1-inner-2 {
+            width: 70%;
+            flex: 0 0 70%;
+            padding-left: 80px;
+        }
+    }
+    
+    /* Hide mobile headings on desktop */
+    .mobile-headings {
+        display: block;
+    }
+    
+    @media (min-width: 768px) {
+        .mobile-headings {
+            display: none;
+        }
+    }
+    
+    /* Modal Popup Styles */
+    #notifyModal {
+        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 999999 !important;
+        justify-content: center;
+        align-items: center;
+        pointer-events: auto;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    #notifyModal.active {
+        display: flex !important;
+    }
+    
+    /* Prevent body scroll when modal is open */
+    body.modal-open {
+        overflow: hidden;
+    }
+    
+    /* Modal content - fixed in viewport */
+    .modal-content {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        background-color: transparent;
+        width: 238px;
+        height: 321.24px;
+        border-radius: 20px;
+        padding: 20px 0;
+        text-align: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        pointer-events: auto;
+        z-index: 1000000 !important;
+    }
+    
+    .modal-content h2 {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+        color: #010101;
+        line-height: 1.2;
+        width: 238px;
+    }
+    
+    .modal-content .modal-description {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 14px;
+        color: #010101;
+        margin: 0;
+        width: 238px;
+    }
+    
+    .modal-input {
+        width: 238px;
+        height: 40px;
+        padding: 0 16px;
+        margin: 0;
+        border: none;
+        border-radius: 50px;
+        background-color: #FFFFFF;
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 9px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+    
+    .modal-input:first-of-type {
+        margin-top: 8px;
+    }
+    
+    .modal-input::placeholder {
+        color: #BFBFBF;
+    }
+    
+    .modal-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        margin: 0;
+        text-align: left;
+        width: 238px;
+    }
+    
+    .modal-checkbox .custom-checkbox {
+        width: 13px;
+        height: 16px;
+        margin-top: 1px;
+        cursor: pointer;
+        flex-shrink: 0;
+        position: relative;
+    }
+    
+    .modal-checkbox .custom-checkbox svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .modal-checkbox .custom-checkbox.checked rect {
+        fill: #FC832C;
+        stroke: #FC832C;
+    }
+    
+    .modal-checkbox .custom-checkbox.checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #FFFFFF;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    
+    .modal-checkbox label {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 8px;
+        font-weight: 300;
+        color: #9F9F9F;
+        line-height: 10px;
+        cursor: pointer;
+    }
+    
+    .swipe-button {
+        width: 238px;
+        height: 40px;
+        background-color: #000000;
+        border: none;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+        margin-top: 8px;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+    
+    .swipe-slider {
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        height: 33px;
+        background-color: #FC832C;
+        border-radius: 16px;
+        z-index: 1;
+        cursor: grab;
+        touch-action: none;
+        will-change: transform;
+    }
+    
+    .swipe-slider.dragging {
+        cursor: grabbing;
+    }
+    
+    .swipe-button-text {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        color: #FFFFFF;
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        text-align: center;
+        pointer-events: none;
+        z-index: 2;
+        will-change: transform;
+    }
+
+    @media (min-width: 768px) {
+        .modal-content {
+            width: 321px;
+            height: 434px;
+            gap: 16px;
+        }
+
+        .modal-content h2,
+        .modal-content .modal-description {
+            width: 321px;
+        }
+
+        .modal-content h2 {
+            font-size: 27px;
+        }
+
+        .modal-content .modal-description {
+            font-size: 16px;
+            line-height: 19px;
+        }
+
+        .modal-input {
+            width: 321px;
+            height: 54px;
+            padding: 0 22px;
+            font-size: 12px;
+            border-radius: 68px;
+        }
+
+        .modal-input:first-of-type {
+            margin-top: 11px;
+        }
+
+        .modal-checkbox {
+            width: 321px;
+            gap: 8px;
+        }
+
+        .modal-checkbox .custom-checkbox {
+            width: 18px;
+            height: 22px;
+        }
+
+        .modal-checkbox .custom-checkbox.checked::after {
+            font-size: 14px;
+        }
+
+        .modal-checkbox label {
+            font-size: 11px;
+            line-height: 14px;
+        }
+
+        .swipe-button {
+            width: 321px;
+            height: 54px;
+            border-radius: 27px;
+            margin-top: 11px;
+        }
+
+        .swipe-slider {
+            left: 5px;
+            width: 135px;
+            height: 45px;
+            border-radius: 22px;
+        }
+
+        .swipe-button-text {
+            font-size: 14px;
+            left: 5px;
+            width: 135px;
+        }
+    }
+</style>
+
+<!-- Carousel HTML Structure -->
+<div id="carousel-wrapper">
+    
+    <!-- ============================================ -->
+    <!-- MOBILE VERSION - Visible on mobile only -->
+    <!-- ============================================ -->
+    <div class="carousel-mobile-section">
+        <!-- Main Container -->
+        <div id="carousel-frame-mobile">
+            <div class="mobile-main">
+                <div class="mobile-text-group">
+                    <div class="mobile-text-1">
+                        <p class="mobile-subtitle">[ what we've built ]</p>
+                    </div>
+                    <div class="mobile-text-2">
+                        <h2 class="mobile-title">the <span style="text-decoration: underline;">current arsenal</span></h2>
+                    </div>
+                </div>
+                <div class="mobile-carousel-wrapper">
+                    <!-- Carousel Root Container -->
+                    <div class="carousel-root">
+                    
+                    <!-- Carousel Container -->
+                    <div class="carousel-container">
+                        <!-- Carousel Track with Infinite Loop -->
+                        <div class="carousel-track" id="carouselTrack">
+                            
+                            <!-- Clone of Last Slide (for infinite loop) -->
+                            <div class="product-card">
+                                <!-- Product Image Container -->
+                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
+                                
+                                <!-- Product Overlay Elements -->
+                                <div class="sold-out-badge">Sold out</div>
+                                <div class="product-info">
+                                    <h3><span style="color: #FF8231;">scoop</span></h3>
+                                    <p>1000+ gamers love it</p>
+                                </div>
+                                <button class="notify-btn">Notify me</button>
+                            </div>
+                        
+                            <!-- Slide 1 -->
+                            <div class="product-card">
+                                <!-- Product Image Container -->
+                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
+                                <img class="mobile-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                                <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                                
+                                <!-- Product Overlay Elements -->
+                                <div class="sold-out-badge">Sold out</div>
+                                <div class="product-info">
+                                    <h3>version. <span class="highlight">H1</span></h3>
+                                    <p>2000+ gamers love it</p>
+                                </div>
+                                <button class="notify-btn">Notify me</button>
+                            </div>
+                        
+                            <!-- Slide 2 -->
+                            <div class="product-card">
+                                <!-- Product Image Container -->
+                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
+                                <img class="mobile-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/powerbank2.png" alt="Powerbank H2" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                                <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/powerbank2.png" alt="Powerbank H2" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                                
+                                <!-- Product Overlay Elements -->
+                                <div class="sold-out-badge">Sold out</div>
+                                <div class="product-info">
+                                    <h3><span style="color: #FF8231;">scoop</span></h3>
+                                    <p>2000+ gamers say scoop tagline copy</p>
+                                </div>
+                                <button class="notify-btn">Buy now</button>
+                            </div>
+                        
+                            <!-- Clone of First Slide (for infinite loop) -->
+                            <div class="product-card">
+                                <!-- Product Image Container -->
+                                <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border1.png');"></div>
+                                <img class="mobile-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                                <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/heaphone2.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                                
+                                <!-- Product Overlay Elements -->
+                                <div class="sold-out-badge">Sold out</div>
+                                <div class="product-info">
+                                    <h3>version. <span class="highlight">H1</span></h3>
+                                    <p>2000+ gamers love it</p>
+                                </div>
+                                <button class="notify-btn">Notify me</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination Dots -->
+                    <div class="carousel-dots" id="carouselDotsMobile"></div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- DESKTOP VERSION - Visible on desktop only -->
+    <!-- ============================================ -->
+    <div class="carousel-desktop-section">
+        <!-- First Div -->
+        <div class="desktop-div-1">
+            <!-- Carousel Root Container -->
+            <div class="carousel-root">
+                
+                <!-- Carousel Container -->
+                <div class="carousel-container">
+                    <!-- Carousel Track with Infinite Loop -->
+                    <div class="carousel-track" id="carouselTrackDesktop">
+                        
+                        <!-- Clone of Last Slide (for infinite loop) -->
+                        <div class="product-card">
+                            <!-- Product Image Container -->
+                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
+                        </div>
+                    
+                        <!-- Slide 1 -->
+                        <div class="product-card">
+                            <!-- Product Image Container -->
+                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
+                            <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/headphone1.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                        </div>
+                    
+                        <!-- Slide 2 -->
+                        <div class="product-card">
+                            <!-- Product Image Container -->
+                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
+                            <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/powerbank.png" alt="Powerbank H2" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                        </div>
+                    
+                        <!-- Clone of First Slide (for infinite loop) -->
+                        <div class="product-card">
+                            <!-- Product Image Container -->
+                            <div class="product-image" style="background-image: url('https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/border.png');"></div>
+                            <img class="desktop-product-img" src="https://raw.githubusercontent.com/Murali1801/armor-home/main/assets/images/headphone1.png" alt="Headphone H1" style="width: 100%; height: auto; object-fit: contain; position: absolute; bottom: 0; right: 0;">
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Pagination Dots -->
+                <div class="carousel-dots" id="carouselDotsDesktop"></div>
+                
+            </div>
+        </div>
+        
+        <!-- Second Div -->
+        <div class="desktop-div-2">
+            <!-- First Child Div - 50% -->
+            <div class="desktop-div-2-child-1">
+                <!-- Inner Div 1 - 30% -->
+                <div class="desktop-div-2-child-1-inner-1">
+                    <p class="desktop-subtitle">[ what<br>we've<br>built ]</p>
+                </div>
+                
+                <!-- Inner Div 2 - 70% -->
+                <div class="desktop-div-2-child-1-inner-2">
+                    <h2 class="desktop-title">the <span style="text-decoration: underline;">current<br>arsenal</span></h2>
+                </div>
+            </div>
+            
+            <!-- Second Child Div - 50% -->
+            <div class="desktop-div-2-child-2">
+                <!-- Inner Div 1 - 33.33% -->
+                <div class="desktop-div-2-child-2-inner-1">
+                    <div class="desktop-heading-info" id="desktop-heading-info">
+                        <h3>version. <span style="color: #FF6A00;">H1</span></h3>
+                        <p class="desktop-gamers-count">2000+ gamers love it</p>
+                    </div>
+                </div>
+                
+                <!-- Inner Div 2 - 33.33% -->
+                <div class="desktop-div-2-child-2-inner-2">
+                    <p class="desktop-description" id="desktop-description">Engineered over 2 years to bring immersive sound<br>and jaw dropping design together, meet the<br>World's Coolest Gaming Headphones</p>
+                </div>
+                
+                <!-- Inner Div 3 - 33.33% -->
+                <div class="desktop-div-2-child-2-inner-3">
+                    <button class="desktop-notify-btn">Notify me</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notify Me Modal Popup -->
+<div id="notifyModal">
+    <div class="modal-content">
+        <h2>Stay in the loop</h2>
+        <p class="modal-description">Don't worry we got you, we'll let you know when the H1 comes back into stock :)</p>
+        
+        <input type="email" class="modal-input" placeholder="Enter your email" required>
+        <input type="tel" class="modal-input" placeholder="+91 Whatsapp number (optional)">
+        
+        <div class="modal-checkbox">
+            <div class="custom-checkbox" id="agreeCheckbox">
+                <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.32553" y="0.32553" width="12.155" height="15.2711" rx="3.14679" stroke="#9F9F9F" stroke-width="0.65106"/>
+                </svg>
+            </div>
+            <label for="agreeCheckbox">I agree to receive updates and messages from your company</label>
+        </div>
+        
+        <div class="swipe-button">
+            <div class="swipe-slider" id="swipeSlider"></div>
+            <span class="swipe-button-text">Swipe to notify ›</span>
+        </div>
+    </div>
+</div>
+
+<!-- Carousel JavaScript Logic -->
+<script>
+(() => {
+    const mobileSection = document.querySelector('.carousel-mobile-section');
+    const desktopSection = document.querySelector('.carousel-desktop-section');
+    const desktopBreakpoint = window.matchMedia('(min-width: 768px)');
+
+    const updateCarouselVisibility = () => {
+        if (!mobileSection || !desktopSection) return;
+        if (desktopBreakpoint.matches) {
+            mobileSection.classList.add('carousel-hidden');
+            desktopSection.classList.remove('carousel-hidden');
+        } else {
+            desktopSection.classList.add('carousel-hidden');
+            mobileSection.classList.remove('carousel-hidden');
+        }
+    };
+
+    desktopBreakpoint.addEventListener('change', updateCarouselVisibility);
+    updateCarouselVisibility();
+
+    // Initialize Mobile Carousel
+    const initMobileCarousel = () => {
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDotsMobile');
+        
+        if (!track || !dotsContainer) {
+            return; // Mobile carousel not found (desktop view)
+        }
+        
+        initCarousel(track, dotsContainer, null);
+    };
+    
+    // Update desktop content based on slide index
+    const updateDesktopContent = (slideIndex) => {
+        const headingInfo = document.getElementById('desktop-heading-info');
+        const description = document.getElementById('desktop-description');
+        
+        if (!headingInfo || !description) {
+            return; // Desktop content elements not found (mobile view)
+        }
+        
+        // Slide 0: version. H1
+        if (slideIndex === 0) {
+            headingInfo.innerHTML = '<h3>version. <span style="color: #FF6A00;">H1</span></h3><p class="desktop-gamers-count">2000+ gamers love it</p>';
+            description.innerHTML = 'Engineered over 2 years to bring immersive sound<br>and jaw dropping design together, meet the<br>World\'s Coolest Gaming Headphones';
+            // Update desktop button text
+            const desktopButton = document.querySelector('.desktop-notify-btn');
+            if (desktopButton) {
+                desktopButton.textContent = 'Notify me';
+            }
+        }
+        // Slide 1: scoop
+        else if (slideIndex === 1) {
+            headingInfo.innerHTML = '<h3><span style="color: #FF6A00;">scoop</span></h3><p class="desktop-gamers-count">2000+ gamers say scoop tagline copy</p>';
+            description.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Sed do eiusmod tempor incididunt ut labore et dolore';
+            // Update desktop button text
+            const desktopButton = document.querySelector('.desktop-notify-btn');
+            if (desktopButton) {
+                desktopButton.textContent = 'Buy now';
+            }
+        }
+    };
+    
+    // Initialize Desktop Carousel
+    const initDesktopCarousel = () => {
+        const track = document.getElementById('carouselTrackDesktop');
+        const dotsContainer = document.getElementById('carouselDotsDesktop');
+        const desktopSlides = document.querySelectorAll('.desktop-slide-content');
+        
+        if (!track || !dotsContainer) {
+            return; // Desktop carousel not found (mobile view)
+        }
+        
+        initCarousel(track, dotsContainer, desktopSlides);
+        
+        // Initialize desktop content for first slide
+        requestAnimationFrame(() => {
+            updateDesktopContent(0);
+        });
+    };
+    
+    // Shared carousel initialization function
+    const initCarousel = (track, dotsContainer, desktopSlides) => {
+        const cards = track.querySelectorAll('.product-card');
+        const totalSlides = 2; // actual number of slides (excluding clones)
+        let currentSlide = 0; // start at first slide (0-indexed)
+        let isTransitioning = false;
+        let autoSlideInterval = null;
+        
+        // Get the container element (carousel-container) for swipe handling
+        const container = track.closest('.carousel-container');
+        
+        // Generate dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.className = `dot ${i === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+        
+        const dots = dotsContainer.querySelectorAll('.dot');
+        
+        // Initialize - show only the first real slide (index 1, since index 0 is clone)
+        cards.forEach((card, index) => {
+            // Index 1 is the first real slide (Slide 1)
+            if (index === 1) {
+                card.classList.add('active');
+                card.style.opacity = '1';
+                card.style.zIndex = '2';
+            } else {
+                card.classList.remove('active');
+                card.style.opacity = '0';
+                card.style.zIndex = '1';
+            }
+        });
+        
+        const goToSlide = (slideIndex, resetAutoSlide = true) => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
+            // Reset autoslide timer
+            if (resetAutoSlide) {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
+            
+            const prevSlide = currentSlide;
+            currentSlide = slideIndex;
+            
+            // Update desktop content BEFORE starting transition so text is ready
+            // Check if we're on desktop by checking if desktop content elements exist
+            const headingInfo = document.getElementById('desktop-heading-info');
+            if (headingInfo) {
+                updateDesktopContent(currentSlide);
+            }
+            
+            // Map logical slide index to actual card index (accounting for clone at start)
+            const prevCardIndex = prevSlide + 1; // +1 because index 0 is clone
+            const nextCardIndex = currentSlide + 1; // +1 because index 0 is clone
+            
+            const prevCard = cards[prevCardIndex];
+            const nextCard = cards[nextCardIndex];
+            
+            // Animation sequence: instantly cut current slide, wait 0.1s, then fade in next
+            // Instantly hide previous slide (cut, no fade)
+            prevCard.classList.remove('active');
+            prevCard.style.opacity = '0';
+            prevCard.style.zIndex = '1';
+            
+            // Set next card to be on top but invisible
+            nextCard.classList.add('transitioning');
+            nextCard.style.zIndex = '3';
+            nextCard.style.opacity = '0';
+            
+            // Set images to opacity 0 initially to ensure they start hidden
+            const images = nextCard.querySelectorAll('img, .product-image');
+            images.forEach(img => {
+                img.style.opacity = '0';
+            });
+            
+            // Wait 0.1s after cutting, then fade in over 0.3s
+            setTimeout(() => {
+                // Fade in next slide with 0.3s duration (ease-out for fade-in only)
+                nextCard.style.transition = 'opacity 0.3s ease-out';
+                nextCard.style.opacity = '1';
+                
+                // Fade in images simultaneously with parent
+                images.forEach(img => {
+                    img.style.transition = 'opacity 0.3s ease-out';
+                    img.style.opacity = '1';
+                });
+                
+                // Wait for transition to complete
+                setTimeout(() => {
+                    nextCard.style.transition = '';
+                    images.forEach(img => {
+                        img.style.transition = '';
+                    });
+                    nextCard.classList.remove('transitioning');
+                    nextCard.classList.add('active');
+                    nextCard.style.zIndex = '2';
+                    isTransitioning = false;
+                }, 300); // Match CSS transition duration
+            }, 100); // 0.1s delay after cutting
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            // Update desktop content slides if they exist
+            if (desktopSlides) {
+                desktopSlides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+            }
+        };
+        
+        // Auto-slide function
+        const startAutoSlide = () => {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => {
+                goToSlide((currentSlide + 1) % totalSlides, false);
+            }, 7000); // 7 seconds
+        };
+        
+        // Start autoslide
+        startAutoSlide();
+        
+        // Touch and mouse swipe handling on container (mobile and desktop)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+        let mouseStartX = 0;
+        let mouseEndX = 0;
+        let mouseStartY = 0;
+        let mouseEndY = 0;
+        let isMouseDown = false;
+        
+        // Calculate swipe threshold as 10% of viewport width
+        const getSwipeThreshold = () => {
+            return window.innerWidth * 0.1;
+        };
+        
+        // Use container for swipe handling (whole image area)
+        const swipeElement = container || track;
+        
+        // Touch events on container
+        swipeElement.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].clientX;
+            touchStartY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        
+        swipeElement.addEventListener('touchmove', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            touchEndY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        
+        swipeElement.addEventListener('touchend', () => {
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            const threshold = getSwipeThreshold();
+            
+            // Only swipe if horizontal movement is greater than vertical and threshold met
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    // Swipe left - go to next slide (with wrapping)
+                    goToSlide((currentSlide + 1) % totalSlides);
+                } else {
+                    // Swipe right - go to previous slide (with wrapping)
+                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                }
+            }
+        }, { passive: true });
+        
+        // Mouse events for desktop swipe on container
+        swipeElement.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            mouseStartX = e.clientX;
+            mouseStartY = e.clientY;
+            swipeElement.style.cursor = 'grabbing';
+        }, { passive: true });
+        
+        swipeElement.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            mouseEndX = e.clientX;
+            mouseEndY = e.clientY;
+        }, { passive: true });
+        
+        swipeElement.addEventListener('mouseup', () => {
+            if (!isMouseDown) return;
+            
+            const diffX = mouseStartX - mouseEndX;
+            const diffY = mouseStartY - mouseEndY;
+            const threshold = getSwipeThreshold();
+            
+            // Only swipe if horizontal movement is greater than vertical and threshold met
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    // Swipe left - go to next slide (with wrapping)
+                    goToSlide((currentSlide + 1) % totalSlides);
+                } else {
+                    // Swipe right - go to previous slide (with wrapping)
+                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                }
+            }
+            
+            isMouseDown = false;
+            swipeElement.style.cursor = '';
+        }, { passive: true });
+        
+        swipeElement.addEventListener('mouseleave', () => {
+            isMouseDown = false;
+            swipeElement.style.cursor = '';
+        }, { passive: true });
+    };
+    
+    // Initialize both carousels
+    const initAllCarousels = () => {
+        initMobileCarousel();
+        initDesktopCarousel();
+    };
+    
+    // Initialize immediately or wait for DOM
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAllCarousels);
+    } else {
+        initAllCarousels();
+    }
+})();
+
+// Modal functionality with focus trap and improved initialization
+let modalInitialized = false;
+let focusableElements = [];
+let firstFocusableElement = null;
+let lastFocusableElement = null;
+let previousActiveElement = null;
+
+function getFocusableElements(container) {
+    const focusableSelectors = [
+        'a[href]',
+        'button:not([disabled])',
+        'textarea:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+    ];
+    return container.querySelectorAll(focusableSelectors.join(', '));
+}
+
+function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+    
+    const modal = document.getElementById('notifyModal');
+    if (!modal || !modal.classList.contains('active')) return;
+    
+    const modalContent = modal.querySelector('.modal-content');
+    if (!modalContent) return;
+    
+    if (focusableElements.length === 0) {
+        focusableElements = Array.from(getFocusableElements(modalContent));
+        firstFocusableElement = focusableElements[0];
+        lastFocusableElement = focusableElements[focusableElements.length - 1];
+    }
+    
+    if (focusableElements.length === 0) return;
+    
+    if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstFocusableElement) {
+            e.preventDefault();
+            lastFocusableElement.focus();
+        }
+    } else {
+        // Tab
+        if (document.activeElement === lastFocusableElement) {
+            e.preventDefault();
+            firstFocusableElement.focus();
+        }
+    }
+}
+
+function openModal() {
+    const modal = document.getElementById('notifyModal');
+    if (!modal) return;
+    
+    // Move modal to body to ensure it's above all content
+    if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+    }
+    
+    // Store the previously focused element
+    previousActiveElement = document.activeElement;
+    
+    // Prevent body scroll
+    document.body.classList.add('modal-open');
+    
+    // Show modal
+    modal.classList.add('active');
+    
+    // Reset focusable elements
+    focusableElements = [];
+    
+    
+    // Focus first element after a brief delay
+    requestAnimationFrame(() => {
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            focusableElements = Array.from(getFocusableElements(modalContent));
+            if (focusableElements.length > 0) {
+                firstFocusableElement = focusableElements[0];
+                lastFocusableElement = focusableElements[focusableElements.length - 1];
+                firstFocusableElement.focus();
+            }
+        }
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('notifyModal');
+    if (!modal) return;
+    
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    
+    // Restore focus to previously focused element
+    if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
+        previousActiveElement.focus();
+    }
+    
+    focusableElements = [];
+}
+
+function initModal() {
+    if (modalInitialized) return;
+    
+    const modal = document.getElementById('notifyModal');
+    const notifyButtons = document.querySelectorAll('.notify-btn');
+    const desktopButtons = document.querySelectorAll('.desktop-notify-btn');
+    
+    // Move modal to body immediately to ensure it's above all content
+    if (modal && modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+    }
+    
+    // Check if elements exist
+    if (!modal) {
+        // Retry once if modal not found (Replo compatibility)
+        if (!modalInitialized) {
+            requestAnimationFrame(() => {
+                setTimeout(initModal, 100);
+            });
+        }
+        return;
+    }
+    
+    if (notifyButtons.length === 0 && desktopButtons.length === 0) {
+        // Retry once if buttons not found (Replo compatibility)
+        if (!modalInitialized) {
+            requestAnimationFrame(() => {
+                setTimeout(initModal, 100);
+            });
+        }
+        return;
+    }
+    
+    modalInitialized = true;
+    
+    // Open modal when any notify button is clicked (mobile)
+    notifyButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal();
+        });
+    });
+    
+    // Open modal when any desktop notify button is clicked
+    desktopButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal();
+        });
+    });
+    
+    // Close modal when clicking on the backdrop (not the content)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Prevent modal content clicks from closing the modal
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    // Trap focus within modal
+    document.addEventListener('keydown', trapFocus);
+}
+
+// Initialize with improved Replo compatibility
+function initModalWithRetry() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            requestAnimationFrame(initModal);
+        });
+    } else {
+        requestAnimationFrame(initModal);
+    }
+}
+
+initModalWithRetry();
+
+// Swipe slider functionality with CSS transitions
+let sliderInitialized = false;
+
+function initSwipeSlider() {
+    const slider = document.getElementById('swipeSlider');
+    
+    if (!slider) {
+        return;
+    }
+    
+    // Prevent multiple initializations
+    if (sliderInitialized) {
+        return;
+    }
+    
+    sliderInitialized = true;
+    const button = slider.parentElement;
+    const buttonText = button.querySelector('.swipe-button-text');
+    
+    // Calculate maxSlide based on button width (responsive)
+    const getMaxSlide = () => {
+        const buttonWidth = button.offsetWidth;
+        const sliderWidth = slider.offsetWidth;
+        // Get computed left position of slider (padding)
+        const computedStyle = window.getComputedStyle(slider);
+        const sliderLeft = parseFloat(computedStyle.left) || parseFloat(computedStyle.paddingLeft) || 4;
+        // Calculate max slide distance: button width - slider width - left padding - right padding (same as left)
+        return buttonWidth - sliderWidth - (sliderLeft * 2);
+    };
+    
+    let maxSlide = getMaxSlide();
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let animationFrame = null;
+    
+    // Update maxSlide on resize and when modal opens
+    const updateMaxSlide = () => {
+        const newMaxSlide = getMaxSlide();
+        if (newMaxSlide > 0) {
+            maxSlide = newMaxSlide;
+            // Ensure currentX doesn't exceed new maxSlide
+            if (currentX > maxSlide) {
+                currentX = maxSlide;
+                updatePosition();
+            }
+        }
+    };
+    window.addEventListener('resize', updateMaxSlide);
+    
+    // Recalculate when modal opens (button dimensions may change)
+    const modal = document.getElementById('notifyModal');
+    if (modal) {
+        const observer = new MutationObserver(() => {
+            if (modal.classList.contains('active')) {
+                setTimeout(updateMaxSlide, 50);
+            }
+        });
+        observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+    }
+    
+    // Add transition for smooth animation
+    slider.style.transition = 'transform 0.3s ease-out';
+    buttonText.style.transition = 'transform 0.3s ease-out';
+    
+    const updatePosition = () => {
+        slider.style.transform = `translate(${currentX}px, -50%)`;
+        buttonText.style.transform = `translate(${currentX}px, -50%)`;
+    };
+    
+    const animateTo = (targetX, callback) => {
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+        }
+        
+        const startX = currentX;
+        const distance = targetX - startX;
+        const duration = 300; // ms
+        const startTime = performance.now();
+        
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function (ease-out)
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            
+            currentX = startX + (distance * easeOut);
+            updatePosition();
+            
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(animate);
+            } else {
+                currentX = targetX;
+                updatePosition();
+                if (callback) callback();
+            }
+        };
+        
+        animationFrame = requestAnimationFrame(animate);
+    };
+    
+    const snapBack = () => {
+        slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        currentX = 0;
+        updatePosition();
+        
+        setTimeout(() => {
+            slider.style.transition = '';
+            buttonText.style.transition = '';
+        }, 400);
+    };
+    
+    // Touch start
+    slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const rect = slider.getBoundingClientRect();
+        startX = e.touches[0].clientX - rect.left;
+        slider.classList.add('dragging');
+        slider.style.transition = '';
+        buttonText.style.transition = '';
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+        }
+    }, { passive: false });
+    
+    // Touch move
+    slider.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        
+        const rect = button.getBoundingClientRect();
+        const touchX = e.touches[0].clientX - rect.left;
+        const deltaX = touchX - startX;
+        currentX = Math.max(0, Math.min(deltaX, maxSlide));
+        updatePosition();
+    }, { passive: false });
+    
+    // Touch end
+    slider.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        slider.classList.remove('dragging');
+        
+        // If swiped more than 80% of the way, complete the action
+        if (currentX > maxSlide * 0.8) {
+            animateTo(maxSlide, () => {
+                submitNotification();
+            });
+        } else {
+            snapBack();
+        }
+        
+        currentX = 0;
+    }, { passive: false });
+    
+    // Mouse events for desktop
+    let initialMouseX = 0;
+    let initialSliderX = 0;
+    
+    slider.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        isDragging = true;
+        const rect = button.getBoundingClientRect();
+        const sliderRect = slider.getBoundingClientRect();
+        // Store initial mouse position and slider position
+        initialMouseX = e.clientX;
+        initialSliderX = sliderRect.left - rect.left;
+        currentX = initialSliderX; // Set current position
+        startX = e.clientX - rect.left; // For compatibility
+        slider.classList.add('dragging');
+        slider.style.transition = '';
+        buttonText.style.transition = '';
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+        }
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        
+        // Calculate delta from initial mouse position
+        const deltaX = e.clientX - initialMouseX;
+        // Calculate new position based on initial slider position + delta
+        const newX = initialSliderX + deltaX;
+        currentX = Math.max(0, Math.min(newX, maxSlide));
+        updatePosition();
+    });
+    
+    document.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        slider.classList.remove('dragging');
+        
+        // If swiped more than 80% of the way, complete the action
+        if (currentX > maxSlide * 0.8) {
+            animateTo(maxSlide, () => {
+                submitNotification();
+            });
+        } else {
+            snapBack();
+        }
+    });
+}
+
+// Submit notification function
+function submitNotification() {
+    const emailInput = document.querySelector('.modal-input[type="email"]');
+    const phoneInput = document.querySelector('.modal-input[type="tel"]');
+    const checkbox = document.getElementById('agreeCheckbox');
+    
+    if (!emailInput || !checkbox) return;
+    
+    const email = emailInput.value.trim();
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const agreed = checkbox.classList.contains('checked');
+    
+    if (!email) {
+        alert('Please enter your email address');
+        // Reset slider
+        const slider = document.getElementById('swipeSlider');
+        const buttonText = document.querySelector('.swipe-button-text');
+        if (slider && buttonText) {
+            slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            slider.style.transform = 'translate(0, -50%)';
+            buttonText.style.transform = 'translate(0, -50%)';
+            setTimeout(() => {
+                slider.style.transition = '';
+                buttonText.style.transition = '';
+            }, 400);
+        }
+        return;
+    }
+    
+    if (!agreed) {
+        alert('Please agree to receive updates');
+        // Reset slider
+        const slider = document.getElementById('swipeSlider');
+        const buttonText = document.querySelector('.swipe-button-text');
+        if (slider && buttonText) {
+            slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            slider.style.transform = 'translate(0, -50%)';
+            buttonText.style.transform = 'translate(0, -50%)';
+            setTimeout(() => {
+                slider.style.transition = '';
+                buttonText.style.transition = '';
+            }, 400);
+        }
+        return;
+    }
+    
+    // Here you can add your notification submission logic
+    // Notification submitted: { email, phone, agreed }
+    
+    // Reset slider
+    const slider = document.getElementById('swipeSlider');
+    const buttonText = document.querySelector('.swipe-button-text');
+    if (slider && buttonText) {
+        slider.style.transform = 'translate(0, -50%)';
+        buttonText.style.transform = 'translate(0, -50%)';
+    }
+    
+    // Close modal
+    closeModal();
+    
+    // Show success message
+    alert('Thank you! We\'ll notify you when it\'s back in stock.');
+}
+
+// Custom checkbox functionality
+function initCustomCheckbox() {
+    const checkbox = document.getElementById('agreeCheckbox');
+    const label = document.querySelector('.modal-checkbox label');
+    
+    if (!checkbox) return;
+    
+    // Click on checkbox
+    checkbox.addEventListener('click', () => {
+        checkbox.classList.toggle('checked');
+    });
+    
+    // Click on label
+    label.addEventListener('click', () => {
+        checkbox.classList.toggle('checked');
+    });
+}
+
+// Initialize components with improved Replo compatibility
+let componentsInitialized = false;
+
+function initComponents() {
+    if (componentsInitialized) return;
+    
+    const slider = document.getElementById('swipeSlider');
+    const checkbox = document.getElementById('agreeCheckbox');
+    
+    // Check if elements exist
+    if (!slider && !checkbox) {
+        // Retry once if elements not found (Replo compatibility)
+        if (!componentsInitialized) {
+            requestAnimationFrame(() => {
+                setTimeout(initComponents, 100);
+            });
+        }
+        return;
+    }
+    
+    componentsInitialized = true;
+    initSwipeSlider();
+    initCustomCheckbox();
+}
+
+// Initialize with improved Replo compatibility
+function initComponentsWithRetry() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            requestAnimationFrame(initComponents);
+        });
+    } else {
+        requestAnimationFrame(initComponents);
+    }
+}
+
+initComponentsWithRetry();
+</script>

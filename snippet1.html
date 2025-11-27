@@ -1,0 +1,301 @@
+<!-- Hero Section Snippet - Responsive Design -->
+<!-- This snippet works with the grid-background class from grid-background-snippet.html -->
+
+<!-- Font Links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<style>
+    /* Hero Frame - Responsive Container */
+    #hero-frame {
+        width: 100%;
+        height: 100%;
+        margin: 9% 0 8% 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: visible; /* Allow video negative margin on mobile */
+    }
+
+    /* Content Container - Mobile: Stacked, Desktop: Side by Side */
+    .hero-main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        width: 100%;
+        height: 40%;
+        padding: 0;
+        overflow: visible; /* Allow video negative margin on mobile */
+    }
+
+    .hero-text-section {
+        flex: 1;
+        position: relative;
+    }
+
+    .hero-media-section {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible; /* Allow negative margin on mobile */
+    }
+
+    /* Top Labels - Mobile Styles */
+    .brand-tagline {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 10px;
+        line-height: 12.52px;
+        letter-spacing: 0;
+        color: #000000;
+        margin: 0 0 4px 0;
+        padding: 0;
+    }
+
+    .brand-tagline-highlight {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 10px;
+        line-height: 12.52px;
+        letter-spacing: 0;
+        margin: 0 0 16px 0;
+        padding: 0;
+    }
+
+    .brand-tagline-highlight span {
+        background: #FC832C;
+        color: #FFFFFF;
+        padding: 4px 8px;
+        display: inline-block;
+        border-radius: 0;
+    }
+
+    /* Main Heading - Mobile Styles */
+    .hero-heading {
+        font-family: "Stack Sans Notch", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 46px;
+        line-height: 48px;
+        letter-spacing: 0;
+        position: relative;
+        left: 0;
+        margin: 0 0 12px 0;
+        width: auto;
+        color: #000000;
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: normal;
+    }
+
+    .hero-heading br {
+        display: block;
+    }
+
+    /* Footer Label - Mobile Styles */
+    .hero-footer-label {
+        font-family: 'Permanent Marker', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 8px;
+        line-height: 10px;
+        letter-spacing: -0.02em;
+        position: relative;
+        left: 0;
+        margin: 0;
+        color: #000000;
+        text-transform: lowercase;
+    }
+
+    /* Video Styling - Mobile Only */
+    .hero-video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 0;
+        transform: translateX(9%); /* Move video to right on mobile (positive X = right) */
+    }
+
+    /* Desktop Styles - 768px and above */
+    @media (min-width: 768px) {
+        #hero-frame {
+            padding: 0;
+            height: 100%;
+            position: relative;
+            margin: 9% 0 1% 0;
+        }
+
+        .hero-main-content {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 80px;
+            width: 100%;
+            padding: 0;
+        }
+
+        .hero-text-section {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-media-section {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Top Labels - Desktop Styles */
+        .brand-tagline {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 0;
+            margin: 0 0 8px 0;
+        }
+
+        .brand-tagline-highlight {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 0;
+            margin: 0 0 1% 0;
+        }
+
+        /* Main Heading - Desktop Styles */
+        .hero-heading {
+            font-family: "Stack Sans Notch", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 110.16px;
+            line-height: 113.4px;
+            letter-spacing: 0;
+            margin: 0 0 24px 0;
+            word-break: keep-all;
+            overflow-wrap: normal;
+        }
+
+        /* Footer Label - Desktop Styles */
+        .hero-footer-label {
+            font-family: 'Permanent Marker', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;
+        }
+
+
+        /* \"not all explorers need maps\" */
+        .explorers-heading {
+            position: static;
+            width: auto;
+            height: auto;
+            font-family: 'Stack Sans Notch';
+            font-weight: 400;
+            font-size: 136px;
+            line-height: 140px;
+            color: #010101;
+        }
+
+        /* \"A new-age consumer tech brand built for gamers...\" */
+        .hero-subtext {
+            position: static;
+            width: auto;
+            height: auto;
+            font-family: 'Manrope';
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #010101;
+            margin: 0 0 32px 0;
+        }
+
+        /* homepage video container */
+        .home-video {
+            position: static;
+            width: 661.30px;
+            height: 522.95px;
+            transform: translateX(5%);
+        }
+        .home-video .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: translateY(-15%); /* Move video upwards on desktop */
+        }
+
+        /* \"directions are for updates...\" */
+        .directions-text {
+            position: static;
+            width: auto;
+            height: auto;
+            font-family: 'Permanent Marker';
+            font-weight: 400;
+            font-size: 9.72px;
+            line-height: 12.96px;
+            letter-spacing: -0.02em;
+            color: #010101;
+            margin: 0;
+        }
+    }
+
+    /* Utility Classes */
+    .no-radius {
+        border-radius: 0 !important;
+    }
+</style>
+
+<!-- Hero Section Content -->
+<div id="hero-frame" class="content-over-grid">
+    <!-- Main Content Wrapper -->
+    <div class="hero-main-content">
+        <!-- Text Section -->
+        <div class="hero-text-section">
+            <!-- Top Labels -->
+            <p class="brand-tagline">
+                A new-age consumer tech brand
+            </p>
+            <p class="brand-tagline-highlight hero-subtext">
+                <span>built for gamers, creators, and the curious.</span>
+            </p>
+
+            <!-- Main Heading -->
+            <h1 class="hero-heading explorers-heading">
+                not all<br>explorers<br>needs&nbsp;map
+            </h1>
+
+            <!-- Footer Label -->
+            <p class="hero-footer-label directions-text">
+                directions are for updates, not ideas.
+            </p>
+        </div>
+
+        <!-- Media Section (Video) -->
+        <div class="hero-media-section">
+            <div class="home-video">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="https://cdn.shopify.com/videos/c/o/v/814e13aae14b41619e6946a40c5f4dca.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            </div>
+        </div>
+    </div>
+</div>
